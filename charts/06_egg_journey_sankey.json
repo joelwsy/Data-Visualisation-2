@@ -1,0 +1,86 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The egg journey: from clutch to open sea",
+    "subtitle": "Combined data from Perak (1998–2013) and Melaka (2015–2019): of 100 eggs laid, how many reach the ocean?",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "width": "container",
+  "height": 380,
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false, "domain": false, "ticks": false}},
+  "data": {
+    "values": [
+      {"stage": "1. Eggs laid", "stage_order": 1, "value": 100, "outcome": "Total clutch", "colour": "neutral"},
+      {"stage": "2. Survived to hatch", "stage_order": 2, "value": 100, "outcome": "Survived to hatch", "colour": "good"},
+      {"stage": "2. Survived to hatch", "stage_order": 2, "value": 24, "outcome": "Poached (illegal collection)", "colour": "loss"},
+      {"stage": "2. Survived to hatch", "stage_order": 2, "value": 12, "outcome": "Predation (monitor lizards, ants)", "colour": "loss"},
+      {"stage": "2. Survived to hatch", "stage_order": 2, "value": 8, "outcome": "Tidal flooding & sand erosion", "colour": "loss"},
+      {"stage": "3. Hatched alive", "stage_order": 3, "value": 56, "outcome": "Hatched alive", "colour": "good"},
+      {"stage": "3. Hatched alive", "stage_order": 3, "value": 6, "outcome": "Died in nest (failed development)", "colour": "loss"},
+      {"stage": "4. Reached the sea", "stage_order": 4, "value": 50, "outcome": "Reached the sea", "colour": "good"},
+      {"stage": "4. Reached the sea", "stage_order": 4, "value": 6, "outcome": "Crab predation on the beach", "colour": "loss"}
+    ]
+  },
+  "transform": [
+    {"calculate": "datum.colour == 'good' ? 'Survived to next stage' : (datum.colour == 'loss' ? 'Lost at this stage' : 'Starting clutch')", "as": "category"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "stroke": "white", "strokeWidth": 2, "cornerRadius": 3},
+      "encoding": {
+        "x": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "stage_order"},
+          "axis": {"title": null, "labelFontSize": 11, "labelFontWeight": "bold", "labelAngle": 0, "labelPadding": 8}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "stack": "zero",
+          "axis": {"title": "Eggs (out of every 100 laid)", "titleFontSize": 11}
+        },
+        "color": {
+          "field": "category",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Starting clutch", "Survived to next stage", "Lost at this stage"],
+            "range": ["#264653", "#2a9d8f", "#e76f51"]
+          },
+          "legend": {"title": null, "orient": "bottom"}
+        },
+        "order": {"field": "colour", "type": "nominal", "sort": "descending"},
+        "tooltip": [
+          {"field": "stage", "title": "Stage"},
+          {"field": "outcome", "title": "Outcome"},
+          {"field": "value", "title": "Eggs (per 100)"}
+        ]
+      }
+    },
+    {
+      "transform": [
+        {"filter": "datum.value >= 5"}
+      ],
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": "bold", "color": "white"},
+      "encoding": {
+        "x": {
+          "field": "stage",
+          "type": "nominal",
+          "sort": {"field": "stage_order"}
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "stack": "zero",
+          "bandPosition": 0.5
+        },
+        "text": {"field": "value", "format": ".0f"},
+        "order": {"field": "colour", "type": "nominal", "sort": "descending"}
+      }
+    }
+  ]
+}

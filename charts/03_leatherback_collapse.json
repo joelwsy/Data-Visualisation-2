@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Rantau Abang's leatherbacks: a vanishing act",
+    "subtitle": "Annual leatherback nests, 1956–2023 — from over 10,000 to zero",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "width": "container",
+  "height": 340,
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "layer": [
+    {
+      "data": {
+        "values": [
+          {"year": 1956, "nests": 10155}, {"year": 1960, "nests": 8800}, {"year": 1965, "nests": 7600},
+          {"year": 1970, "nests": 6800}, {"year": 1975, "nests": 4300}, {"year": 1980, "nests": 2500},
+          {"year": 1984, "nests": 800}, {"year": 1988, "nests": 410}, {"year": 1990, "nests": 320},
+          {"year": 1993, "nests": 180}, {"year": 1995, "nests": 90}, {"year": 1998, "nests": 22},
+          {"year": 2000, "nests": 13}, {"year": 2003, "nests": 7}, {"year": 2005, "nests": 4},
+          {"year": 2008, "nests": 2}, {"year": 2010, "nests": 1}, {"year": 2013, "nests": 1},
+          {"year": 2015, "nests": 0}, {"year": 2018, "nests": 0}, {"year": 2020, "nests": 1},
+          {"year": 2023, "nests": 0}
+        ]
+      },
+      "mark": {"type": "area", "color": "#264653", "opacity": 0.18, "line": {"color": "#264653", "strokeWidth": 2.5}},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative", "axis": {"title": "Year", "format": "d", "tickCount": 8}, "scale": {"domain": [1955, 2024]}},
+        "y": {"field": "nests", "type": "quantitative", "axis": {"title": "Leatherback nests per year"}},
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "nests", "title": "Nests", "format": ","}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"year": 1988, "label": "1988: Turtle protection law passed"},
+          {"year": 2008, "label": "2008: Last confirmed leatherback nest"},
+          {"year": 1965, "label": "1965 peak: still ~7,600 nests"}
+        ]
+      },
+      "mark": {"type": "rule", "color": "#e76f51", "strokeDash": [4, 3], "strokeWidth": 1.2},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative"}
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"year": 1965, "y": 9500, "label": "Peak nesting era"},
+          {"year": 1989, "y": 6500, "label": "Protection law (1988)"},
+          {"year": 2009, "y": 3500, "label": "Functional extinction (2008)"}
+        ]
+      },
+      "mark": {"type": "text", "fontSize": 10, "fontWeight": "bold", "color": "#e76f51", "align": "left", "dx": 4},
+      "encoding": {
+        "x": {"field": "year", "type": "quantitative"},
+        "y": {"field": "y", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    }
+  ]
+}

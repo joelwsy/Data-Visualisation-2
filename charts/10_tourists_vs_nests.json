@@ -1,0 +1,92 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Tourists rise. Do turtles follow, or flee?",
+    "subtitle": "Both series indexed to 2019 = 100. Diverging lines reveal where tourism and nesting move apart",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "data": {
+    "values": [
+      {"state": "Terengganu", "year": 2015, "tourists_M": 4.1, "nests": 1480},
+      {"state": "Terengganu", "year": 2016, "tourists_M": 4.4, "nests": 1410},
+      {"state": "Terengganu", "year": 2017, "tourists_M": 4.7, "nests": 1380},
+      {"state": "Terengganu", "year": 2018, "tourists_M": 5.0, "nests": 1340},
+      {"state": "Terengganu", "year": 2019, "tourists_M": 5.4, "nests": 1290},
+      {"state": "Terengganu", "year": 2020, "tourists_M": 2.1, "nests": 1380},
+      {"state": "Terengganu", "year": 2021, "tourists_M": 1.8, "nests": 1420},
+      {"state": "Terengganu", "year": 2022, "tourists_M": 4.2, "nests": 1330},
+      {"state": "Terengganu", "year": 2023, "tourists_M": 5.6, "nests": 1290},
+      {"state": "Sabah", "year": 2015, "tourists_M": 3.2, "nests": 4520},
+      {"state": "Sabah", "year": 2016, "tourists_M": 3.5, "nests": 4640},
+      {"state": "Sabah", "year": 2017, "tourists_M": 3.7, "nests": 4710},
+      {"state": "Sabah", "year": 2018, "tourists_M": 3.9, "nests": 4820},
+      {"state": "Sabah", "year": 2019, "tourists_M": 4.2, "nests": 4900},
+      {"state": "Sabah", "year": 2020, "tourists_M": 1.4, "nests": 5010},
+      {"state": "Sabah", "year": 2021, "tourists_M": 1.2, "nests": 5180},
+      {"state": "Sabah", "year": 2022, "tourists_M": 2.9, "nests": 5100},
+      {"state": "Sabah", "year": 2023, "tourists_M": 3.6, "nests": 4980},
+      {"state": "Pahang", "year": 2015, "tourists_M": 8.5, "nests": 410},
+      {"state": "Pahang", "year": 2016, "tourists_M": 9.0, "nests": 380},
+      {"state": "Pahang", "year": 2017, "tourists_M": 9.6, "nests": 360},
+      {"state": "Pahang", "year": 2018, "tourists_M": 10.2, "nests": 340},
+      {"state": "Pahang", "year": 2019, "tourists_M": 10.8, "nests": 310},
+      {"state": "Pahang", "year": 2020, "tourists_M": 4.2, "nests": 340},
+      {"state": "Pahang", "year": 2021, "tourists_M": 3.8, "nests": 330},
+      {"state": "Pahang", "year": 2022, "tourists_M": 8.5, "nests": 295},
+      {"state": "Pahang", "year": 2023, "tourists_M": 11.1, "nests": 280}
+    ]
+  },
+  "transform": [
+    {"calculate": "datum.tourists_M / (datum.state == 'Terengganu' ? 5.4 : (datum.state == 'Sabah' ? 4.2 : 10.8)) * 100", "as": "tourists_idx"},
+    {"calculate": "datum.nests / (datum.state == 'Terengganu' ? 1290 : (datum.state == 'Sabah' ? 4900 : 310)) * 100", "as": "nests_idx"},
+    {"fold": ["tourists_idx", "nests_idx"], "as": ["metric", "value"]},
+    {"calculate": "datum.metric == 'tourists_idx' ? 'Tourist arrivals' : 'Turtle nests'", "as": "series"}
+  ],
+  "facet": {
+    "column": {
+      "field": "state",
+      "type": "nominal",
+      "sort": ["Sabah", "Terengganu", "Pahang"],
+      "header": {"title": null, "labelFontSize": 13, "labelFontWeight": "bold"}
+    }
+  },
+  "spec": {
+    "width": 230,
+    "height": 260,
+    "layer": [
+      {
+        "mark": {"type": "rule", "color": "#999", "strokeDash": [3, 3]},
+        "encoding": {"y": {"datum": 100}}
+      },
+      {
+        "mark": {"type": "line", "strokeWidth": 2.5, "point": {"size": 50, "filled": true}},
+        "encoding": {
+          "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": -45, "labelFontSize": 9}},
+          "y": {"field": "value", "type": "quantitative", "axis": {"title": "Index (2019 = 100)", "titleFontSize": 10}},
+          "color": {
+            "field": "series",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Tourist arrivals", "Turtle nests"],
+              "range": ["#5a8aa5", "#2a9d8f"]
+            },
+            "legend": {"title": null, "orient": "bottom"}
+          },
+          "tooltip": [
+            {"field": "state", "title": "State"},
+            {"field": "year", "title": "Year"},
+            {"field": "series", "title": "Series"},
+            {"field": "value", "title": "Index (2019=100)", "format": ".1f"},
+            {"field": "tourists_M", "title": "Tourists (M)", "format": ".2f"},
+            {"field": "nests", "title": "Nests", "format": ","}
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where Malaysia's sea turtles nest",
+    "subtitle": "Circle size shows annual nest counts; colour shows dominant species (2023)",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "width": "container",
+  "height": 380,
+  "background": "#f7f9fb",
+  "config": {
+    "view": {"stroke": null}
+  },
+  "layer": [
+    {
+      "data": {
+        "url": "https://raw.githubusercontent.com/vega/vega-datasets/master/data/world-110m.json",
+        "format": {"type": "topojson", "feature": "countries"}
+      },
+      "projection": {"type": "equalEarth", "center": [109, 4], "scale": 1800},
+      "mark": {"type": "geoshape", "fill": "#e8ede2", "stroke": "#bcc7b8", "strokeWidth": 0.6}
+    },
+    {
+      "data": {
+        "values": [
+          {"beach": "Selingan Island", "state": "Sabah", "lat": 6.166, "lon": 118.066, "nests": 2820, "species": "Green", "note": "Marine Park, protected since 1977"},
+          {"beach": "Libaran Island", "state": "Sabah", "lat": 6.058, "lon": 118.123, "nests": 380, "species": "Green", "note": "Community-led conservation"},
+          {"beach": "Gulisan Island", "state": "Sabah", "lat": 6.187, "lon": 118.041, "nests": 410, "species": "Green", "note": "Turtle Islands Park"},
+          {"beach": "Chagar Hutang", "state": "Terengganu", "lat": 5.793, "lon": 103.014, "nests": 970, "species": "Green", "note": "SEATRU monitoring since 1993"},
+          {"beach": "Rantau Abang", "state": "Terengganu", "lat": 4.821, "lon": 103.413, "nests": 1, "species": "Leatherback", "note": "Once 10,000+ nests/year — now functionally extinct"},
+          {"beach": "Pulau Perhentian", "state": "Terengganu", "lat": 5.917, "lon": 102.733, "nests": 240, "species": "Hawksbill", "note": "Mixed species, growing protection"},
+          {"beach": "Pantai Kemasik", "state": "Terengganu", "lat": 4.434, "lon": 103.456, "nests": 85, "species": "Green", "note": "Secondary nesting site"},
+          {"beach": "Melaka coast", "state": "Melaka", "lat": 2.272, "lon": 102.262, "nests": 130, "species": "Hawksbill", "note": "Salim et al. 2021 study site"},
+          {"beach": "Segari (Perak)", "state": "Perak", "lat": 4.302, "lon": 100.567, "nests": 95, "species": "Green", "note": "Kamaruddin et al. 2014 study site"},
+          {"beach": "Sandakan beaches", "state": "Sabah", "lat": 5.840, "lon": 118.117, "nests": 520, "species": "Green", "note": "Outside Turtle Islands Park"},
+          {"beach": "Tioman Island", "state": "Pahang", "lat": 2.789, "lon": 104.171, "nests": 180, "species": "Hawksbill", "note": "Marine Park"},
+          {"beach": "Pulau Tinggi", "state": "Johor", "lat": 2.300, "lon": 104.117, "nests": 65, "species": "Hawksbill", "note": "Sultan Iskandar Marine Park"}
+        ]
+      },
+      "projection": {"type": "equalEarth", "center": [109, 4], "scale": 1800},
+      "mark": {"type": "circle", "opacity": 0.78, "stroke": "white", "strokeWidth": 1.2},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "size": {
+          "field": "nests",
+          "type": "quantitative",
+          "scale": {"type": "sqrt", "range": [25, 1500]},
+          "legend": {"title": "Annual nests", "orient": "bottom-right"}
+        },
+        "color": {
+          "field": "species",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Green", "Hawksbill", "Leatherback"],
+            "range": ["#2a9d8f", "#e9c46a", "#264653"]
+          },
+          "legend": {"title": "Species", "orient": "bottom-right"}
+        },
+        "tooltip": [
+          {"field": "beach", "title": "Beach"},
+          {"field": "state", "title": "State"},
+          {"field": "species", "title": "Dominant species"},
+          {"field": "nests", "title": "Nests (2023)", "format": ","},
+          {"field": "note", "title": "Note"}
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {"label": "Sabah — biggest stronghold", "lat": 6.5, "lon": 117.5},
+          {"label": "Terengganu — historic heartland", "lat": 5.3, "lon": 102.0},
+          {"label": "Rantau Abang: leatherbacks gone", "lat": 4.3, "lon": 102.0}
+        ]
+      },
+      "projection": {"type": "equalEarth", "center": [109, 4], "scale": 1800},
+      "mark": {"type": "text", "fontSize": 10, "fontStyle": "italic", "color": "#444", "align": "left"},
+      "encoding": {
+        "longitude": {"field": "lon", "type": "quantitative"},
+        "latitude": {"field": "lat", "type": "quantitative"},
+        "text": {"field": "label"}
+      }
+    }
+  ]
+}

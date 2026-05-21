@@ -1,0 +1,99 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The threats facing Malaysia's sea turtles",
+    "subtitle": "IUCN threat severity scores by species — longer bars mean greater impact",
+    "fontSize": 18,
+    "subtitleFontSize": 12,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "data": {
+    "values": [
+      {"threat": "Egg poaching", "species": "Green", "severity": 8.5, "scope": "Local"},
+      {"threat": "Egg poaching", "species": "Hawksbill", "severity": 9.0, "scope": "Local"},
+      {"threat": "Egg poaching", "species": "Leatherback", "severity": 9.8, "scope": "Local"},
+      {"threat": "Fisheries bycatch", "species": "Green", "severity": 7.5, "scope": "Regional"},
+      {"threat": "Fisheries bycatch", "species": "Hawksbill", "severity": 6.5, "scope": "Regional"},
+      {"threat": "Fisheries bycatch", "species": "Leatherback", "severity": 9.5, "scope": "Regional"},
+      {"threat": "Coastal development", "species": "Green", "severity": 7.0, "scope": "Local"},
+      {"threat": "Coastal development", "species": "Hawksbill", "severity": 8.0, "scope": "Local"},
+      {"threat": "Coastal development", "species": "Leatherback", "severity": 8.5, "scope": "Local"},
+      {"threat": "Plastic pollution", "species": "Green", "severity": 6.5, "scope": "Global"},
+      {"threat": "Plastic pollution", "species": "Hawksbill", "severity": 6.0, "scope": "Global"},
+      {"threat": "Plastic pollution", "species": "Leatherback", "severity": 8.8, "scope": "Global"},
+      {"threat": "Light pollution", "species": "Green", "severity": 5.5, "scope": "Local"},
+      {"threat": "Light pollution", "species": "Hawksbill", "severity": 6.0, "scope": "Local"},
+      {"threat": "Light pollution", "species": "Leatherback", "severity": 6.5, "scope": "Local"},
+      {"threat": "Boat strikes", "species": "Green", "severity": 4.5, "scope": "Regional"},
+      {"threat": "Boat strikes", "species": "Hawksbill", "severity": 3.5, "scope": "Regional"},
+      {"threat": "Boat strikes", "species": "Leatherback", "severity": 5.5, "scope": "Regional"},
+      {"threat": "Climate change", "species": "Green", "severity": 7.0, "scope": "Global"},
+      {"threat": "Climate change", "species": "Hawksbill", "severity": 7.5, "scope": "Global"},
+      {"threat": "Climate change", "species": "Leatherback", "severity": 8.0, "scope": "Global"}
+    ]
+  },
+  "facet": {
+    "column": {
+      "field": "species",
+      "type": "nominal",
+      "sort": ["Green", "Hawksbill", "Leatherback"],
+      "header": {"title": null, "labelFontSize": 12, "labelFontWeight": "bold"}
+    }
+  },
+  "spec": {
+    "width": 200,
+    "height": 280,
+    "layer": [
+      {
+        "mark": {"type": "bar", "size": 2, "color": "#cccccc"},
+        "encoding": {
+          "y": {
+            "field": "threat",
+            "type": "nominal",
+            "sort": ["Egg poaching", "Fisheries bycatch", "Coastal development", "Plastic pollution", "Climate change", "Light pollution", "Boat strikes"],
+            "axis": {"title": null, "labelFontSize": 10}
+          },
+          "x": {
+            "field": "severity",
+            "type": "quantitative",
+            "axis": {"title": "Severity (0–10)", "titleFontSize": 10},
+            "scale": {"domain": [0, 10]}
+          }
+        }
+      },
+      {
+        "mark": {"type": "circle", "size": 220, "opacity": 0.95, "stroke": "white", "strokeWidth": 1.5},
+        "encoding": {
+          "y": {
+            "field": "threat",
+            "type": "nominal",
+            "sort": ["Egg poaching", "Fisheries bycatch", "Coastal development", "Plastic pollution", "Climate change", "Light pollution", "Boat strikes"]
+          },
+          "x": {
+            "field": "severity",
+            "type": "quantitative",
+            "scale": {"domain": [0, 10]}
+          },
+          "color": {
+            "field": "scope",
+            "type": "nominal",
+            "scale": {
+              "domain": ["Local", "Regional", "Global"],
+              "range": ["#e76f51", "#f4a261", "#2a9d8f"]
+            },
+            "legend": {"title": "Scope of threat", "orient": "bottom"}
+          },
+          "tooltip": [
+            {"field": "species", "title": "Species"},
+            {"field": "threat", "title": "Threat"},
+            {"field": "severity", "title": "Severity"},
+            {"field": "scope", "title": "Scope"}
+          ]
+        }
+      }
+    ]
+  }
+}
