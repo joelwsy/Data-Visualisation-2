@@ -57,9 +57,14 @@
     ]
   },
   "transform": [
-    {"filter": "datum.year == 1980", "as": "base"},
-    {"joinaggregate": [{"op": "max", "field": "nests", "as": "base_nests"}], "groupby": ["species"]},
-    {"calculate": "datum.nests / datum.base_nests * 100", "as": "index"}
+    {
+      "calculate": "datum.species == 'Green' ? 9800 : datum.species == 'Hawksbill' ? 1850 : datum.species == 'Olive Ridley' ? 320 : 2500",
+      "as": "base_1980"
+    },
+    {
+      "calculate": "datum.nests / datum.base_1980 * 100",
+      "as": "index"
+    }
   ],
   "layer": [
     {
