@@ -11,80 +11,41 @@
   "width": "container",
   "height": 320,
   "background": "#f7f9fb",
-  "config": {"view": {"stroke": null}, "axis": {"grid": false, "domain": false, "ticks": false}},
+  "config": {"view": {"stroke": null}, "axis": {"domain": false, "ticks": false}},
   "data": {
     "values": [
-      {"temp_band": "27.5°C", "sex": "Male", "pct": 95},
-      {"temp_band": "27.5°C", "sex": "Female", "pct": 5},
-      {"temp_band": "28.5°C", "sex": "Male", "pct": 80},
-      {"temp_band": "28.5°C", "sex": "Female", "pct": 20},
-      {"temp_band": "29.0°C", "sex": "Male", "pct": 50},
-      {"temp_band": "29.0°C", "sex": "Female", "pct": 50},
-      {"temp_band": "29.5°C", "sex": "Male", "pct": 25},
-      {"temp_band": "29.5°C", "sex": "Female", "pct": 75},
-      {"temp_band": "30.5°C", "sex": "Male", "pct": 10},
-      {"temp_band": "30.5°C", "sex": "Female", "pct": 90},
-      {"temp_band": "31.5°C", "sex": "Male", "pct": 2},
-      {"temp_band": "31.5°C", "sex": "Female", "pct": 98}
+      {"temp_band": "27.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 6}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 7}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 8}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 9}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 10}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 11}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 12}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 13}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 14}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 15}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 16}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 17}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 18}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 19}, {"temp_band": "27.5°C", "sex": "Female", "icon_index": 20},
+      {"temp_band": "28.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 6}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 7}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 8}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 9}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 10}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 11}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 12}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 13}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 14}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 15}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 16}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 20},
+      {"temp_band": "29.0°C", "sex": "Male", "icon_index": 1}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 2}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 3}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 4}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 5}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 6}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 7}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 8}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 9}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 10}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 11}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 12}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 13}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 14}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 15}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 16}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 17}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 18}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 19}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 20},
+      {"temp_band": "29.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 20},
+      {"temp_band": "30.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "30.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 3}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 4}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 5}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 20},
+      {"temp_band": "31.5°C", "sex": "Female", "icon_index": 1}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 2}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 3}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 4}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 5}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 20}
     ]
   },
   "transform": [
-    {"calculate": "round(datum.pct / 5)", "as": "n_icons"},
-    {"flatten": ["n_icons"], "as": ["icon"]}
-  ],
-  "layer": [
     {
-      "data": {
-        "values": [
-          {"temp_band": "27.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 6}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 7}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 8}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 9}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 10}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 11}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 12}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 13}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 14}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 15}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 16}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 17}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 18}, {"temp_band": "27.5°C", "sex": "Male", "icon_index": 19}, {"temp_band": "27.5°C", "sex": "Female", "icon_index": 20},
-          {"temp_band": "28.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 6}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 7}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 8}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 9}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 10}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 11}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 12}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 13}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 14}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 15}, {"temp_band": "28.5°C", "sex": "Male", "icon_index": 16}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "28.5°C", "sex": "Female", "icon_index": 20},
-          {"temp_band": "29.0°C", "sex": "Male", "icon_index": 1}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 2}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 3}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 4}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 5}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 6}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 7}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 8}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 9}, {"temp_band": "29.0°C", "sex": "Male", "icon_index": 10}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 11}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 12}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 13}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 14}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 15}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 16}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 17}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 18}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 19}, {"temp_band": "29.0°C", "sex": "Female", "icon_index": 20},
-          {"temp_band": "29.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 3}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 4}, {"temp_band": "29.5°C", "sex": "Male", "icon_index": 5}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "29.5°C", "sex": "Female", "icon_index": 20},
-          {"temp_band": "30.5°C", "sex": "Male", "icon_index": 1}, {"temp_band": "30.5°C", "sex": "Male", "icon_index": 2}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 3}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 4}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 5}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "30.5°C", "sex": "Female", "icon_index": 20},
-          {"temp_band": "31.5°C", "sex": "Female", "icon_index": 1}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 2}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 3}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 4}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 5}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 6}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 7}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 8}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 9}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 10}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 11}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 12}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 13}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 14}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 15}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 16}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 17}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 18}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 19}, {"temp_band": "31.5°C", "sex": "Female", "icon_index": 20}
-        ]
-      },
-      "mark": {"type": "point", "shape": "circle", "size": 220, "filled": true, "stroke": "white", "strokeWidth": 1},
-      "encoding": {
-        "x": {
-          "field": "temp_band",
-          "type": "nominal",
-          "sort": ["27.5°C", "28.5°C", "29.0°C", "29.5°C", "30.5°C", "31.5°C"],
-          "axis": {"title": "Sand temperature during incubation", "titleFontSize": 11, "labelFontSize": 11, "labelPadding": 8}
-        },
-        "y": {
-          "field": "icon_index",
-          "type": "ordinal",
-          "sort": "descending",
-          "axis": null
-        },
-        "color": {
-          "field": "sex",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Male", "Female"],
-            "range": ["#2a4d80", "#c2185b"]
-          },
-          "legend": {"title": "Hatchling sex (1 dot = 5%)", "orient": "top-right"}
-        },
-        "tooltip": [
-          {"field": "temp_band", "title": "Sand temperature"},
-          {"field": "sex", "title": "Sex"}
-        ]
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {"temp_band": "29.0°C", "y": 22, "label": "Pivotal temperature: 50/50"}
-        ]
-      },
-      "mark": {"type": "text", "fontSize": 10, "fontStyle": "italic", "color": "#555", "align": "center"},
-      "encoding": {
-        "x": {"field": "temp_band", "type": "nominal", "sort": ["27.5°C", "28.5°C", "29.0°C", "29.5°C", "30.5°C", "31.5°C"]},
-        "y": {"field": "y", "type": "ordinal"},
-        "text": {"field": "label"}
-      }
+      "calculate": "datum.sex == 'Male' ? 'images/Male_Turtle_Icon.png' : 'images/Female_Turtle_Icon.png'",
+      "as": "icon_url"
     }
-  ]
+  ],
+  "mark": {"type": "image", "width": 32, "height": 32},
+  "encoding": {
+    "x": {
+      "field": "temp_band",
+      "type": "nominal",
+      "sort": ["27.5°C", "28.5°C", "29.0°C", "29.5°C", "30.5°C", "31.5°C"],
+      "axis": {"title": "Sand temperature during incubation", "titleFontSize": 11, "labelFontSize": 11, "labelPadding": 8}
+    },
+    "y": {
+      "field": "icon_index",
+      "type": "ordinal",
+      "sort": "descending",
+      "axis": null
+    },
+    "url": {"field": "icon_url", "type": "nominal"},
+    "tooltip": [
+      {"field": "temp_band", "title": "Sand temperature"},
+      {"field": "sex", "title": "Sex"}
+    ]
+  }
 }
