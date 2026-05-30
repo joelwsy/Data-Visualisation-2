@@ -9,7 +9,7 @@
     "subtitleColor": "#555"
   },
   "width": "container",
-  "height": 340,
+  "height": 380,
   "background": "#f7f9fb",
   "config": {"view": {"stroke": null}, "axis": {"grid": false}},
   "data": {
@@ -32,12 +32,21 @@
       {"state": "Penang", "category": "Protected hatchery incubation", "pct": 18}
     ]
   },
+  "transform": [
+    {"calculate": "datum.pct >= 50 ? 'Upward (toward hatchery)' : 'Downward (toward market)'", "as": "direction"}
+  ],
   "layer": [
     {
-      "mark": {"type": "line", "strokeWidth": 2, "opacity": 0.7},
+      "mark": {"type": "line", "strokeWidth": 2.5, "opacity": 0.8},
       "encoding": {
-        "x": {"field": "category", "type": "nominal", "sort": ["Commercial market sales", "Protected hatchery incubation"], "axis": {"title": null, "labelFontSize": 11, "labelFontWeight": "bold"}},
-        "y": {"field": "pct", "type": "quantitative", "axis": {"title": "Percentage of total eggs"}},
+        "x": {
+          "field": "category",
+          "type": "nominal",
+          "sort": ["Commercial market sales", "Protected hatchery incubation"],
+          "axis": {"title": null, "labelFontSize": 12, "labelFontWeight": "bold", "labelLimit": 300},
+          "scale": {"padding": 1.5}
+        },
+        "y": {"field": "pct", "type": "quantitative", "axis": {"title": "Percentage of total eggs"}, "scale": {"domain": [0, 100]}},
         "color": {
           "field": "state",
           "type": "nominal",
@@ -47,16 +56,11 @@
           },
           "legend": {"title": "State", "orient": "right"}
         },
-        "detail": {"field": "state"},
-        "tooltip": [
-          {"field": "state", "title": "State"},
-          {"field": "category", "title": "Disposition"},
-          {"field": "pct", "title": "Percentage", "format": ".0f"}
-        ]
+        "detail": {"field": "state"}
       }
     },
     {
-      "mark": {"type": "circle", "size": 120, "filled": true, "stroke": "white", "strokeWidth": 1.5},
+      "mark": {"type": "circle", "size": 100, "filled": true, "stroke": "white", "strokeWidth": 1.5, "opacity": 0.9},
       "encoding": {
         "x": {"field": "category", "type": "nominal", "sort": ["Commercial market sales", "Protected hatchery incubation"]},
         "y": {"field": "pct", "type": "quantitative"},
@@ -64,13 +68,13 @@
         "tooltip": [
           {"field": "state", "title": "State"},
           {"field": "category", "title": "Disposition"},
-          {"field": "pct", "title": "Percentage", "format": ".0f"}
+          {"field": "pct", "title": "Percentage"}
         ]
       }
     },
     {
-      "transform": [{"filter": "datum.category == 'Protected hatchery incubation'"}],
-      "mark": {"type": "text", "align": "left", "dx": 8, "fontSize": 10},
+      "transform": [{"filter": "datum.category == 'Commercial market sales'"}],
+      "mark": {"type": "text", "align": "right", "dx": -10, "fontSize": 10, "fontWeight": "bold"},
       "encoding": {
         "x": {"field": "category", "type": "nominal", "sort": ["Commercial market sales", "Protected hatchery incubation"]},
         "y": {"field": "pct", "type": "quantitative"},

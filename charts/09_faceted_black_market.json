@@ -2,7 +2,7 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Each species faces a different black market",
-    "subtitle": "Proportion of seized commodities by species over time. Source: TRAFFIC / CITES",
+    "subtitle": "Total seized commodities by species and type (2015 to 2019). Source: TRAFFIC / CITES",
     "fontSize": 16,
     "subtitleFontSize": 11,
     "anchor": "start",
@@ -12,18 +12,18 @@
   "config": {"view": {"stroke": null}, "axis": {"grid": false}},
   "data": {
     "values": [
-      {"species": "Green", "year": 2015, "commodity": "Eggs", "pct": 78}, {"species": "Green", "year": 2015, "commodity": "Live individuals", "pct": 12}, {"species": "Green", "year": 2015, "commodity": "Shells / bekko", "pct": 10},
-      {"species": "Green", "year": 2017, "commodity": "Eggs", "pct": 80}, {"species": "Green", "year": 2017, "commodity": "Live individuals", "pct": 10}, {"species": "Green", "year": 2017, "commodity": "Shells / bekko", "pct": 10},
-      {"species": "Green", "year": 2019, "commodity": "Eggs", "pct": 82}, {"species": "Green", "year": 2019, "commodity": "Live individuals", "pct": 11}, {"species": "Green", "year": 2019, "commodity": "Shells / bekko", "pct": 7},
-      {"species": "Hawksbill", "year": 2015, "commodity": "Eggs", "pct": 25}, {"species": "Hawksbill", "year": 2015, "commodity": "Live individuals", "pct": 15}, {"species": "Hawksbill", "year": 2015, "commodity": "Shells / bekko", "pct": 60},
-      {"species": "Hawksbill", "year": 2017, "commodity": "Eggs", "pct": 28}, {"species": "Hawksbill", "year": 2017, "commodity": "Live individuals", "pct": 12}, {"species": "Hawksbill", "year": 2017, "commodity": "Shells / bekko", "pct": 60},
-      {"species": "Hawksbill", "year": 2019, "commodity": "Eggs", "pct": 30}, {"species": "Hawksbill", "year": 2019, "commodity": "Live individuals", "pct": 10}, {"species": "Hawksbill", "year": 2019, "commodity": "Shells / bekko", "pct": 60},
-      {"species": "Olive Ridley", "year": 2015, "commodity": "Eggs", "pct": 55}, {"species": "Olive Ridley", "year": 2015, "commodity": "Live individuals", "pct": 35}, {"species": "Olive Ridley", "year": 2015, "commodity": "Shells / bekko", "pct": 10},
-      {"species": "Olive Ridley", "year": 2017, "commodity": "Eggs", "pct": 58}, {"species": "Olive Ridley", "year": 2017, "commodity": "Live individuals", "pct": 32}, {"species": "Olive Ridley", "year": 2017, "commodity": "Shells / bekko", "pct": 10},
-      {"species": "Olive Ridley", "year": 2019, "commodity": "Eggs", "pct": 60}, {"species": "Olive Ridley", "year": 2019, "commodity": "Live individuals", "pct": 28}, {"species": "Olive Ridley", "year": 2019, "commodity": "Shells / bekko", "pct": 12},
-      {"species": "Leatherback", "year": 2015, "commodity": "Eggs", "pct": 90}, {"species": "Leatherback", "year": 2015, "commodity": "Live individuals", "pct": 8}, {"species": "Leatherback", "year": 2015, "commodity": "Shells / bekko", "pct": 2},
-      {"species": "Leatherback", "year": 2017, "commodity": "Eggs", "pct": 88}, {"species": "Leatherback", "year": 2017, "commodity": "Live individuals", "pct": 10}, {"species": "Leatherback", "year": 2017, "commodity": "Shells / bekko", "pct": 2},
-      {"species": "Leatherback", "year": 2019, "commodity": "Eggs", "pct": 85}, {"species": "Leatherback", "year": 2019, "commodity": "Live individuals", "pct": 12}, {"species": "Leatherback", "year": 2019, "commodity": "Shells / bekko", "pct": 3}
+      {"species": "Green", "commodity": "Eggs", "seized": 42000},
+      {"species": "Green", "commodity": "Live individuals", "seized": 620},
+      {"species": "Green", "commodity": "Shells / bekko", "seized": 180},
+      {"species": "Hawksbill", "commodity": "Eggs", "seized": 3800},
+      {"species": "Hawksbill", "commodity": "Live individuals", "seized": 410},
+      {"species": "Hawksbill", "commodity": "Shells / bekko", "seized": 1850},
+      {"species": "Olive Ridley", "commodity": "Eggs", "seized": 5200},
+      {"species": "Olive Ridley", "commodity": "Live individuals", "seized": 280},
+      {"species": "Olive Ridley", "commodity": "Shells / bekko", "seized": 95},
+      {"species": "Leatherback", "commodity": "Eggs", "seized": 1400},
+      {"species": "Leatherback", "commodity": "Live individuals", "seized": 45},
+      {"species": "Leatherback", "commodity": "Shells / bekko", "seized": 12}
     ]
   },
   "facet": {
@@ -31,16 +31,25 @@
       "field": "species",
       "type": "nominal",
       "sort": ["Green", "Hawksbill", "Olive Ridley", "Leatherback"],
-      "header": {"title": null, "labelFontSize": 12, "labelFontWeight": "bold"}
+      "header": {"title": null, "labelFontSize": 13, "labelFontWeight": "bold"}
     }
   },
   "spec": {
     "width": 160,
-    "height": 220,
-    "mark": {"type": "bar", "stroke": "white", "strokeWidth": 1},
+    "height": 240,
+    "mark": {"type": "bar", "cornerRadiusEnd": 2},
     "encoding": {
-      "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": 0}},
-      "y": {"field": "pct", "type": "quantitative", "stack": "normalize", "axis": {"title": "Proportion", "format": ".0%"}},
+      "y": {
+        "field": "commodity",
+        "type": "nominal",
+        "sort": ["Eggs", "Live individuals", "Shells / bekko"],
+        "axis": {"title": null, "labelFontSize": 10}
+      },
+      "x": {
+        "field": "seized",
+        "type": "quantitative",
+        "axis": {"title": "Units seized", "format": "~s"}
+      },
       "color": {
         "field": "commodity",
         "type": "nominal",
@@ -48,13 +57,12 @@
           "domain": ["Eggs", "Live individuals", "Shells / bekko"],
           "range": ["#e9c46a", "#e76f51", "#264653"]
         },
-        "legend": {"title": "Seized commodity", "orient": "bottom"}
+        "legend": {"title": "Commodity", "orient": "bottom"}
       },
       "tooltip": [
         {"field": "species", "title": "Species"},
-        {"field": "year", "title": "Year"},
         {"field": "commodity", "title": "Commodity"},
-        {"field": "pct", "title": "Proportion (%)", "format": ".0f"}
+        {"field": "seized", "title": "Units seized", "format": ","}
       ]
     }
   }

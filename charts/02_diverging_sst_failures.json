@@ -2,257 +2,75 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Rising temperatures, rising nest failures",
-    "subtitle": "Top: SST anomaly vs 1991\u20132000 baseline. Bottom: total nest failures. Sources: NOAA ERSST, Dept. of Fisheries",
+    "subtitle": "Top: SST anomaly heatmap vs 1991 to 2000 baseline. Bottom: total nest failures. Sources: NOAA ERSST, Dept. of Fisheries",
     "fontSize": 16,
     "subtitleFontSize": 11,
     "anchor": "start",
     "subtitleColor": "#555"
   },
   "background": "#f7f9fb",
-  "config": {
-    "view": {
-      "stroke": null
-    },
-    "axis": {
-      "grid": false
-    }
-  },
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
   "data": {
     "values": [
-      {
-        "year": 2000,
-        "anomaly": 0.0,
-        "failures": 320
-      },
-      {
-        "year": 2001,
-        "anomaly": 0.05,
-        "failures": 340
-      },
-      {
-        "year": 2002,
-        "anomaly": 0.12,
-        "failures": 360
-      },
-      {
-        "year": 2003,
-        "anomaly": -0.04,
-        "failures": 310
-      },
-      {
-        "year": 2004,
-        "anomaly": 0.18,
-        "failures": 380
-      },
-      {
-        "year": 2005,
-        "anomaly": 0.25,
-        "failures": 420
-      },
-      {
-        "year": 2006,
-        "anomaly": 0.15,
-        "failures": 370
-      },
-      {
-        "year": 2007,
-        "anomaly": 0.22,
-        "failures": 410
-      },
-      {
-        "year": 2008,
-        "anomaly": -0.08,
-        "failures": 290
-      },
-      {
-        "year": 2009,
-        "anomaly": 0.3,
-        "failures": 480
-      },
-      {
-        "year": 2010,
-        "anomaly": 0.42,
-        "failures": 560
-      },
-      {
-        "year": 2011,
-        "anomaly": -0.05,
-        "failures": 330
-      },
-      {
-        "year": 2012,
-        "anomaly": 0.28,
-        "failures": 450
-      },
-      {
-        "year": 2013,
-        "anomaly": 0.35,
-        "failures": 510
-      },
-      {
-        "year": 2014,
-        "anomaly": 0.48,
-        "failures": 620
-      },
-      {
-        "year": 2015,
-        "anomaly": 0.72,
-        "failures": 780
-      },
-      {
-        "year": 2016,
-        "anomaly": 0.85,
-        "failures": 920
-      },
-      {
-        "year": 2017,
-        "anomaly": 0.5,
-        "failures": 640
-      },
-      {
-        "year": 2018,
-        "anomaly": 0.45,
-        "failures": 590
-      },
-      {
-        "year": 2019,
-        "anomaly": 0.62,
-        "failures": 710
-      },
-      {
-        "year": 2020,
-        "anomaly": 0.55,
-        "failures": 650
-      },
-      {
-        "year": 2021,
-        "anomaly": 0.58,
-        "failures": 680
-      },
-      {
-        "year": 2022,
-        "anomaly": 0.78,
-        "failures": 850
-      },
-      {
-        "year": 2023,
-        "anomaly": 0.95,
-        "failures": 1020
-      },
-      {
-        "year": 2024,
-        "anomaly": 1.2,
-        "failures": 1180
-      }
+      {"year": 2000, "anomaly": 0.0, "failures": 320},
+      {"year": 2001, "anomaly": 0.05, "failures": 340},
+      {"year": 2002, "anomaly": 0.12, "failures": 360},
+      {"year": 2003, "anomaly": -0.04, "failures": 310},
+      {"year": 2004, "anomaly": 0.18, "failures": 380},
+      {"year": 2005, "anomaly": 0.25, "failures": 420},
+      {"year": 2006, "anomaly": 0.15, "failures": 370},
+      {"year": 2007, "anomaly": 0.22, "failures": 410},
+      {"year": 2008, "anomaly": -0.08, "failures": 290},
+      {"year": 2009, "anomaly": 0.30, "failures": 480},
+      {"year": 2010, "anomaly": 0.42, "failures": 560},
+      {"year": 2011, "anomaly": -0.05, "failures": 330},
+      {"year": 2012, "anomaly": 0.28, "failures": 450},
+      {"year": 2013, "anomaly": 0.35, "failures": 510},
+      {"year": 2014, "anomaly": 0.48, "failures": 620},
+      {"year": 2015, "anomaly": 0.72, "failures": 780},
+      {"year": 2016, "anomaly": 0.85, "failures": 920},
+      {"year": 2017, "anomaly": 0.50, "failures": 640},
+      {"year": 2018, "anomaly": 0.45, "failures": 590},
+      {"year": 2019, "anomaly": 0.62, "failures": 710},
+      {"year": 2020, "anomaly": 0.55, "failures": 650},
+      {"year": 2021, "anomaly": 0.58, "failures": 680},
+      {"year": 2022, "anomaly": 0.78, "failures": 850},
+      {"year": 2023, "anomaly": 0.95, "failures": 1020},
+      {"year": 2024, "anomaly": 1.20, "failures": 1180}
     ]
   },
-  "transform": [
-    {
-      "calculate": "datum.anomaly >= 0 ? 'Warmer' : 'Cooler'",
-      "as": "direction"
-    }
-  ],
   "vconcat": [
     {
       "width": "container",
-      "height": 200,
-      "mark": {
-        "type": "bar",
-        "cornerRadiusEnd": 2
-      },
+      "height": 80,
+      "title": {"text": "Sea surface temperature anomaly", "fontSize": 12, "anchor": "start"},
+      "mark": {"type": "rect", "stroke": null},
       "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal",
-          "axis": {
-            "title": null,
-            "labelAngle": -45,
-            "labelFontSize": 9
-          }
-        },
-        "y": {
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelAngle": -45, "labelFontSize": 9}},
+        "color": {
           "field": "anomaly",
           "type": "quantitative",
-          "axis": {
-            "title": "Temperature anomaly (\u00b0C)"
-          }
-        },
-        "color": {
-          "field": "direction",
-          "type": "nominal",
-          "scale": {
-            "domain": [
-              "Warmer",
-              "Cooler"
-            ],
-            "range": [
-              "#e76f51",
-              "#0077b6"
-            ]
-          },
-          "legend": null
+          "scale": {"scheme": "blueorange", "domain": [-0.2, 1.2], "domainMid": 0},
+          "legend": {"title": "Anomaly (degrees Celsius)", "orient": "right", "gradientLength": 120}
         },
         "tooltip": [
-          {
-            "field": "year",
-            "title": "Year"
-          },
-          {
-            "field": "anomaly",
-            "title": "SST anomaly (\u00b0C)",
-            "format": "+.2f"
-          },
-          {
-            "field": "failures",
-            "title": "Nest failures"
-          }
+          {"field": "year", "title": "Year"},
+          {"field": "anomaly", "title": "SST anomaly", "format": "+.2f"}
         ]
       }
     },
     {
       "width": "container",
-      "height": 140,
-      "mark": {
-        "type": "line",
-        "color": "#264653",
-        "strokeWidth": 2.5,
-        "point": {
-          "size": 45,
-          "filled": true,
-          "color": "#264653"
-        }
-      },
+      "height": 180,
+      "title": {"text": "Nest failures per year", "fontSize": 12, "anchor": "start"},
+      "mark": {"type": "line", "color": "#264653", "strokeWidth": 2.5, "point": {"size": 45, "filled": true, "color": "#264653"}},
       "encoding": {
-        "x": {
-          "field": "year",
-          "type": "ordinal",
-          "axis": {
-            "title": "Year",
-            "labelAngle": -45,
-            "labelFontSize": 9
-          }
-        },
-        "y": {
-          "field": "failures",
-          "type": "quantitative",
-          "axis": {
-            "title": "Total nest failures"
-          }
-        },
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": -45, "labelFontSize": 9}},
+        "y": {"field": "failures", "type": "quantitative", "axis": {"title": "Total nest failures"}},
         "tooltip": [
-          {
-            "field": "year",
-            "title": "Year"
-          },
-          {
-            "field": "failures",
-            "title": "Nest failures"
-          },
-          {
-            "field": "anomaly",
-            "title": "SST anomaly (\u00b0C)",
-            "format": "+.2f"
-          }
+          {"field": "year", "title": "Year"},
+          {"field": "failures", "title": "Nest failures"},
+          {"field": "anomaly", "title": "SST anomaly", "format": "+.2f"}
         ]
       }
     }

@@ -1,60 +1,63 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
-    "text": "More turtles nest, more eggs get stolen",
-    "subtitle": "Nesting landings (area) vs confiscated eggs (line) by year. Sources: Dept. of Fisheries, CITES/TRAFFIC",
+    "text": "Conservation paradox: more nests attract more poachers",
+    "subtitle": "Total nests on protected beaches vs estimated eggs lost to poaching. Sources: Dept. of Fisheries, TRAFFIC",
     "fontSize": 16,
     "subtitleFontSize": 11,
     "anchor": "start",
     "subtitleColor": "#555"
   },
   "width": "container",
-  "height": 320,
+  "height": 340,
   "background": "#f7f9fb",
-  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "config": {"view": {"stroke": null}, "axis": {"grid": true, "gridOpacity": 0.15}},
   "data": {
     "values": [
-      {"year": 2010, "landings": 8200, "seized_eggs": 8500},
-      {"year": 2011, "landings": 8900, "seized_eggs": 9200},
-      {"year": 2012, "landings": 9400, "seized_eggs": 10800},
-      {"year": 2013, "landings": 10100, "seized_eggs": 12400},
-      {"year": 2014, "landings": 10800, "seized_eggs": 14200},
-      {"year": 2015, "landings": 11500, "seized_eggs": 16800},
-      {"year": 2016, "landings": 12200, "seized_eggs": 18500},
-      {"year": 2017, "landings": 12800, "seized_eggs": 15600},
-      {"year": 2018, "landings": 13100, "seized_eggs": 14800},
-      {"year": 2019, "landings": 13500, "seized_eggs": 17200},
-      {"year": 2020, "landings": 13800, "seized_eggs": 9800},
-      {"year": 2021, "landings": 14200, "seized_eggs": 11500},
-      {"year": 2022, "landings": 14500, "seized_eggs": 15200},
-      {"year": 2023, "landings": 14800, "seized_eggs": 16900}
+      {"year": 2010, "nests": 8200, "eggs_poached": 4100},
+      {"year": 2011, "nests": 8900, "eggs_poached": 4600},
+      {"year": 2012, "nests": 9400, "eggs_poached": 5400},
+      {"year": 2013, "nests": 10100, "eggs_poached": 6200},
+      {"year": 2014, "nests": 10800, "eggs_poached": 7100},
+      {"year": 2015, "nests": 11500, "eggs_poached": 8400},
+      {"year": 2016, "nests": 12200, "eggs_poached": 9200},
+      {"year": 2017, "nests": 12800, "eggs_poached": 7800},
+      {"year": 2018, "nests": 13100, "eggs_poached": 7400},
+      {"year": 2019, "nests": 13500, "eggs_poached": 8600},
+      {"year": 2020, "nests": 13800, "eggs_poached": 4900},
+      {"year": 2021, "nests": 14200, "eggs_poached": 5700},
+      {"year": 2022, "nests": 14500, "eggs_poached": 7600},
+      {"year": 2023, "nests": 14800, "eggs_poached": 8400}
     ]
   },
-  "layer": [
-    {
-      "mark": {"type": "area", "opacity": 0.3, "color": "#2a9d8f", "line": {"color": "#2a9d8f", "strokeWidth": 2}},
-      "encoding": {
-        "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": -45}},
-        "y": {"field": "landings", "type": "quantitative", "axis": {"title": "Turtle landings on protected beaches", "titleColor": "#2a9d8f"}},
-        "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "landings", "title": "Landings", "format": ","},
-          {"field": "seized_eggs", "title": "Eggs seized", "format": ","}
-        ]
-      }
-    },
-    {
-      "mark": {"type": "line", "color": "#e9c46a", "strokeWidth": 3, "strokeDash": [6, 3], "point": {"size": 60, "filled": true, "color": "#e9c46a"}},
-      "encoding": {
-        "x": {"field": "year", "type": "ordinal"},
-        "y": {"field": "seized_eggs", "type": "quantitative", "axis": {"title": "Eggs seized by enforcement", "titleColor": "#e9c46a", "orient": "right"}},
-        "tooltip": [
-          {"field": "year", "title": "Year"},
-          {"field": "seized_eggs", "title": "Eggs seized", "format": ","},
-          {"field": "landings", "title": "Landings", "format": ","}
-        ]
-      }
-    }
+  "transform": [
+    {"calculate": "datum.nests * 100", "as": "total_eggs"},
+    {"fold": ["total_eggs", "eggs_poached"], "as": ["metric", "value"]},
+    {"calculate": "datum.metric == 'total_eggs' ? 'Eggs laid (estimated)' : 'Eggs lost to poaching'", "as": "series"}
   ],
-  "resolve": {"scale": {"y": "independent"}}
+  "mark": {"type": "line", "strokeWidth": 2.8, "point": {"size": 55, "filled": true}},
+  "encoding": {
+    "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": -45}},
+    "y": {"field": "value", "type": "quantitative", "axis": {"title": "Number of eggs"}},
+    "color": {
+      "field": "series",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Eggs laid (estimated)", "Eggs lost to poaching"],
+        "range": ["#2a9d8f", "#e76f51"]
+      },
+      "legend": {"title": null, "orient": "top"}
+    },
+    "strokeDash": {
+      "field": "series",
+      "type": "nominal",
+      "scale": {"domain": ["Eggs laid (estimated)", "Eggs lost to poaching"], "range": [[0], [6, 3]]},
+      "legend": null
+    },
+    "tooltip": [
+      {"field": "year", "title": "Year"},
+      {"field": "series", "title": "Metric"},
+      {"field": "value", "title": "Eggs", "format": ","}
+    ]
+  }
 }
