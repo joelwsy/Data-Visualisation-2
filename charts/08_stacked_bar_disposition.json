@@ -1,0 +1,72 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Where do the eggs end up?",
+    "subtitle": "Normalised proportion of egg outcomes by state. Source: Dept. of Fisheries, TRAFFIC",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "width": "container",
+  "height": 300,
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "data": {
+    "values": [
+      {"state": "Sabah", "disposition": "Protected hatchery", "pct": 82},
+      {"state": "Sabah", "disposition": "Confiscated (enforcement)", "pct": 13},
+      {"state": "Sabah", "disposition": "Sold commercially", "pct": 5},
+      {"state": "Sarawak", "disposition": "Protected hatchery", "pct": 75},
+      {"state": "Sarawak", "disposition": "Confiscated (enforcement)", "pct": 15},
+      {"state": "Sarawak", "disposition": "Sold commercially", "pct": 10},
+      {"state": "Terengganu", "disposition": "Protected hatchery", "pct": 48},
+      {"state": "Terengganu", "disposition": "Confiscated (enforcement)", "pct": 18},
+      {"state": "Terengganu", "disposition": "Sold commercially", "pct": 34},
+      {"state": "Pahang", "disposition": "Protected hatchery", "pct": 42},
+      {"state": "Pahang", "disposition": "Confiscated (enforcement)", "pct": 12},
+      {"state": "Pahang", "disposition": "Sold commercially", "pct": 46},
+      {"state": "Perak", "disposition": "Protected hatchery", "pct": 25},
+      {"state": "Perak", "disposition": "Confiscated (enforcement)", "pct": 8},
+      {"state": "Perak", "disposition": "Sold commercially", "pct": 67},
+      {"state": "Melaka", "disposition": "Protected hatchery", "pct": 35},
+      {"state": "Melaka", "disposition": "Confiscated (enforcement)", "pct": 15},
+      {"state": "Melaka", "disposition": "Sold commercially", "pct": 50},
+      {"state": "Johor", "disposition": "Protected hatchery", "pct": 28},
+      {"state": "Johor", "disposition": "Confiscated (enforcement)", "pct": 10},
+      {"state": "Johor", "disposition": "Sold commercially", "pct": 62},
+      {"state": "Penang", "disposition": "Protected hatchery", "pct": 15},
+      {"state": "Penang", "disposition": "Confiscated (enforcement)", "pct": 12},
+      {"state": "Penang", "disposition": "Sold commercially", "pct": 73}
+    ]
+  },
+  "mark": {"type": "bar", "stroke": "white", "strokeWidth": 1},
+  "encoding": {
+    "y": {
+      "field": "state",
+      "type": "nominal",
+      "sort": ["Sabah", "Sarawak", "Terengganu", "Pahang", "Melaka", "Perak", "Johor", "Penang"],
+      "axis": {"title": null, "labelFontSize": 11}
+    },
+    "x": {
+      "field": "pct",
+      "type": "quantitative",
+      "stack": "normalize",
+      "axis": {"title": "Proportion of eggs (%)", "format": ".0%"}
+    },
+    "color": {
+      "field": "disposition",
+      "type": "nominal",
+      "scale": {
+        "domain": ["Protected hatchery", "Confiscated (enforcement)", "Sold commercially"],
+        "range": ["#2a9d8f", "#0077b6", "#e76f51"]
+      },
+      "legend": {"title": "Egg disposition", "orient": "bottom"}
+    },
+    "tooltip": [
+      {"field": "state", "title": "State"},
+      {"field": "disposition", "title": "Disposition"},
+      {"field": "pct", "title": "Percentage", "format": ".0f"}
+    ]
+  }
+}

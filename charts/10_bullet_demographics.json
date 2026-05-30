@@ -1,0 +1,67 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Trafficking hits juveniles and adults alike",
+    "subtitle": "Seized turtles by age class and species. Bar = seized count; tick = estimated wild population. Source: TRAFFIC",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "width": "container",
+  "height": 300,
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "data": {
+    "values": [
+      {"species": "Green", "age": "Juvenile", "seized": 420, "est_wild": 650},
+      {"species": "Green", "age": "Adult", "seized": 380, "est_wild": 580},
+      {"species": "Hawksbill", "age": "Juvenile", "seized": 185, "est_wild": 240},
+      {"species": "Hawksbill", "age": "Adult", "seized": 210, "est_wild": 310},
+      {"species": "Olive Ridley", "age": "Juvenile", "seized": 42, "est_wild": 85},
+      {"species": "Olive Ridley", "age": "Adult", "seized": 55, "est_wild": 110},
+      {"species": "Leatherback", "age": "Juvenile", "seized": 12, "est_wild": 18},
+      {"species": "Leatherback", "age": "Adult", "seized": 8, "est_wild": 15}
+    ]
+  },
+  "transform": [
+    {"calculate": "datum.species + ' — ' + datum.age", "as": "label"},
+    {"calculate": "datum.seized / datum.est_wild * 100", "as": "pct_of_wild"}
+  ],
+  "layer": [
+    {
+      "mark": {"type": "bar", "color": "#ddd", "height": 18},
+      "encoding": {
+        "y": {"field": "label", "type": "nominal", "sort": {"field": "seized", "order": "descending"}, "axis": {"title": null, "labelFontSize": 10}},
+        "x": {"field": "est_wild", "type": "quantitative", "axis": {"title": "Individuals (2015–2019)"}}
+      }
+    },
+    {
+      "mark": {"type": "bar", "height": 12, "cornerRadiusEnd": 2},
+      "encoding": {
+        "y": {"field": "label", "type": "nominal", "sort": {"field": "seized", "order": "descending"}},
+        "x": {"field": "seized", "type": "quantitative"},
+        "color": {
+          "field": "age",
+          "type": "nominal",
+          "scale": {"domain": ["Juvenile", "Adult"], "range": ["#0077b6", "#264653"]},
+          "legend": {"title": "Age class", "orient": "top-right"}
+        },
+        "tooltip": [
+          {"field": "species", "title": "Species"},
+          {"field": "age", "title": "Age class"},
+          {"field": "seized", "title": "Seized"},
+          {"field": "est_wild", "title": "Estimated wild encounters"},
+          {"field": "pct_of_wild", "title": "Seized as % of wild", "format": ".1f"}
+        ]
+      }
+    },
+    {
+      "mark": {"type": "tick", "color": "#e76f51", "thickness": 3, "size": 20},
+      "encoding": {
+        "y": {"field": "label", "type": "nominal", "sort": {"field": "seized", "order": "descending"}},
+        "x": {"field": "est_wild", "type": "quantitative"}
+      }
+    }
+  ]
+}

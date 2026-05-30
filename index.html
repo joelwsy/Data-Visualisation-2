@@ -3,45 +3,165 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sea Turtles of Malaysia</title>
+  <title>Tides of Change: Sea Turtle Conservation in Malaysia</title>
 
-  <!-- Vega-Lite libraries (from course notes) -->
+  <!-- Vega-Lite libraries -->
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
 
-  <!-- Your loader script — must come AFTER the three above -->
+  <!-- Chart loader -->
   <script src="js/vega_lite_vis.js" defer></script>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f7f9fb;
+      color: #333;
+      line-height: 1.7;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 30px;
+    }
+
+    /* Header */
+    .header {
+      text-align: center;
+      padding: 50px 20px 30px;
+      background: linear-gradient(135deg, #264653, #2a9d8f);
+      color: white;
+      margin-bottom: 40px;
+    }
+    .header h1 { font-size: 2.4em; margin-bottom: 10px; }
+    .header p { font-size: 1.1em; opacity: 0.9; max-width: 700px; margin: 0 auto; }
+
+    /* Section titles */
+    .pillar-title {
+      font-size: 1.6em;
+      color: #264653;
+      border-bottom: 3px solid #2a9d8f;
+      padding-bottom: 8px;
+      margin: 50px 0 15px;
+    }
+
+    /* Narrative text */
+    .narrative {
+      font-size: 1.0em;
+      color: #555;
+      margin-bottom: 25px;
+      max-width: 800px;
+    }
+
+    /* Chart containers */
+    .chart-container {
+      width: 100%;
+      margin: 20px 0 50px;
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 30px;
+      color: #888;
+      font-size: 0.85em;
+      border-top: 1px solid #ddd;
+      margin-top: 40px;
+    }
+  </style>
 </head>
 <body>
 
-  <h1>Sea Turtles of Malaysia</h1>
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <h1>Tides of Change</h1>
+    <p>Visualising sea turtle conservation in Malaysia — from nesting beaches to black markets, from warming seas to hatchery hope.</p>
+  </div>
 
-  <!-- Chapter 1 -->
-  <h2>Chapter 1: Where do they nest?</h2>
-  <div id="nesting_map" style="width:100%;"></div>
-  <div id="species_heatmap" style="width:100%;"></div>
+  <div class="container">
 
-  <!-- Chapter 2 -->
-  <h2>Chapter 2: A century of decline</h2>
-  <div id="leatherback_collapse" style="width:100%;"></div>
-  <div id="species_trajectories" style="width:100%;"></div>
+    <!-- ===== PILLAR 1: INTRODUCTION & GEOGRAPHY ===== -->
+    <h2 class="pillar-title">Where Do They Nest?</h2>
 
-  <!-- Chapter 3 -->
-  <h2>Chapter 3: What's killing them?</h2>
-  <div id="threats_lollipop" style="width:100%;"></div>
-  <div id="egg_journey" style="width:100%;"></div>
+    <p class="narrative">
+      Malaysia's coastlines harbour four sea turtle species: the Green, Hawksbill, Olive Ridley, and the locally extinct Leatherback. Sabah's Turtle Islands Park records the highest nesting density in the country, while Terengganu's beaches carry the weight of historical significance. The map below plots every documented nesting beach alongside the mean sea surface temperature recorded at each site — warmer colours signal locations where rising heat already threatens incubation.
+    </p>
+    <div class="chart-container" id="geo_map"></div>
 
-  <!-- Chapter 4 -->
-  <h2>Chapter 4: A warming sea</h2>
-  <div id="sex_ratio" style="width:100%;"></div>
-  <div id="sst_scatter" style="width:100%;"></div>
+    <!-- ===== PILLAR 2: PRIMARY THREATS ===== -->
+    <h2 class="pillar-title">The Threats They Face</h2>
 
-  <!-- Chapter 5 -->
-  <h2>Chapter 5: Can we turn it around?</h2>
-  <div id="hatching_bars" style="width:100%;"></div>
-  <div id="tourists_nests" style="width:100%;"></div>
-  <div id="calendar_heatmap" style="width:100%;"></div>
+    <p class="narrative">
+      Commercial egg poaching remains the single largest direct threat to Malaysian sea turtles. Between 2015 and 2019, over 75,000 turtle eggs were confiscated in Malaysia alone — and that figure captures only what enforcement agencies actually intercepted.
+    </p>
+    <div class="chart-container" id="isotype_seizures"></div>
+
+    <p class="narrative">
+      As conservation efforts grow and more turtles nest on protected beaches, a troubling paradox emerges: the volume of illegally seized eggs rises in tandem. More turtles attract more poachers.
+    </p>
+    <div class="chart-container" id="landings_seizures"></div>
+
+    <p class="narrative">
+      Different species are hunted for different products. Green turtles are overwhelmingly targeted for their eggs. Hawksbill turtles, by contrast, are prized for their shells — the raw material for the luxury bekko trade.
+    </p>
+    <div class="chart-container" id="faceted_threats"></div>
+
+    <!-- ===== PILLAR 3: BIOLOGICAL OUTCOMES ===== -->
+    <h2 class="pillar-title">What the Data Reveals</h2>
+
+    <p class="narrative">
+      The Leatherback turtle's story at Rantau Abang is the starkest warning. From over 10,000 nests per year in the 1950s, the population collapsed to functional extinction. Protection came too late.
+    </p>
+    <div class="chart-container" id="leatherback_collapse"></div>
+
+    <p class="narrative">
+      Rising sea surface temperatures don't just warm the water — they cook eggs in the sand. Years with strong positive temperature anomalies consistently correlate with spikes in nest failures across Malaysian beaches.
+    </p>
+    <div class="chart-container" id="sst_failures"></div>
+
+    <p class="narrative">
+      Sea turtles nest seasonally, with Green turtles peaking between June and September during the southwest monsoon. The heatmap below reveals how each species' nesting window aligns with the warmest months — the very months when thermal stress is highest.
+    </p>
+    <div class="chart-container" id="heatmap_season"></div>
+
+    <!-- ===== PILLAR 4: CONSERVATION EFFORTS ===== -->
+    <h2 class="pillar-title">Is Conservation Working?</h2>
+
+    <p class="narrative">
+      The most powerful evidence comes from state-level legislation. In Sabah and Sarawak, where commercial egg trade is strictly banned, nearly all eggs reach protected hatcheries. In states with fragmented enforcement, the majority are still sold in open markets.
+    </p>
+    <div class="chart-container" id="slope_legislation"></div>
+
+    <p class="narrative">
+      The contrast sharpens when we look at where eggs ultimately end up. States with total bans show green-dominant bars — eggs going to hatcheries. States with legal ambiguity show red — eggs entering commercial channels.
+    </p>
+    <div class="chart-container" id="stacked_disposition"></div>
+
+    <p class="narrative">
+      In Sabah's Turtle Islands Park, the data traces a clear upward trajectory: more female landings are translating into more eggs secured in hatcheries year after year. The connected path below shows this steady improvement from 2008 to 2023.
+    </p>
+    <div class="chart-container" id="connected_scatter"></div>
+
+    <p class="narrative">
+      Trafficking does not discriminate by age. Both juvenile and adult turtles are seized in alarming numbers, compounding the generational damage to already fragile populations.
+    </p>
+    <div class="chart-container" id="bullet_demographics"></div>
+
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    <p>FIT2179 Data Visualisation — Assignment 2 | Joel Wong</p>
+    <p>Data sources: Department of Fisheries Malaysia, TRAFFIC/CITES Trade Database, NOAA ERSST</p>
+  </div>
 
 </body>
 </html>

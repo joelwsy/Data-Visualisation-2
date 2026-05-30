@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Each species faces a different black market",
+    "subtitle": "Proportion of seized commodities by species over time. Source: TRAFFIC / CITES",
+    "fontSize": 16,
+    "subtitleFontSize": 11,
+    "anchor": "start",
+    "subtitleColor": "#555"
+  },
+  "background": "#f7f9fb",
+  "config": {"view": {"stroke": null}, "axis": {"grid": false}},
+  "data": {
+    "values": [
+      {"species": "Green", "year": 2015, "commodity": "Eggs", "pct": 78}, {"species": "Green", "year": 2015, "commodity": "Live individuals", "pct": 12}, {"species": "Green", "year": 2015, "commodity": "Shells / bekko", "pct": 10},
+      {"species": "Green", "year": 2017, "commodity": "Eggs", "pct": 80}, {"species": "Green", "year": 2017, "commodity": "Live individuals", "pct": 10}, {"species": "Green", "year": 2017, "commodity": "Shells / bekko", "pct": 10},
+      {"species": "Green", "year": 2019, "commodity": "Eggs", "pct": 82}, {"species": "Green", "year": 2019, "commodity": "Live individuals", "pct": 11}, {"species": "Green", "year": 2019, "commodity": "Shells / bekko", "pct": 7},
+      {"species": "Hawksbill", "year": 2015, "commodity": "Eggs", "pct": 25}, {"species": "Hawksbill", "year": 2015, "commodity": "Live individuals", "pct": 15}, {"species": "Hawksbill", "year": 2015, "commodity": "Shells / bekko", "pct": 60},
+      {"species": "Hawksbill", "year": 2017, "commodity": "Eggs", "pct": 28}, {"species": "Hawksbill", "year": 2017, "commodity": "Live individuals", "pct": 12}, {"species": "Hawksbill", "year": 2017, "commodity": "Shells / bekko", "pct": 60},
+      {"species": "Hawksbill", "year": 2019, "commodity": "Eggs", "pct": 30}, {"species": "Hawksbill", "year": 2019, "commodity": "Live individuals", "pct": 10}, {"species": "Hawksbill", "year": 2019, "commodity": "Shells / bekko", "pct": 60},
+      {"species": "Olive Ridley", "year": 2015, "commodity": "Eggs", "pct": 55}, {"species": "Olive Ridley", "year": 2015, "commodity": "Live individuals", "pct": 35}, {"species": "Olive Ridley", "year": 2015, "commodity": "Shells / bekko", "pct": 10},
+      {"species": "Olive Ridley", "year": 2017, "commodity": "Eggs", "pct": 58}, {"species": "Olive Ridley", "year": 2017, "commodity": "Live individuals", "pct": 32}, {"species": "Olive Ridley", "year": 2017, "commodity": "Shells / bekko", "pct": 10},
+      {"species": "Olive Ridley", "year": 2019, "commodity": "Eggs", "pct": 60}, {"species": "Olive Ridley", "year": 2019, "commodity": "Live individuals", "pct": 28}, {"species": "Olive Ridley", "year": 2019, "commodity": "Shells / bekko", "pct": 12},
+      {"species": "Leatherback", "year": 2015, "commodity": "Eggs", "pct": 90}, {"species": "Leatherback", "year": 2015, "commodity": "Live individuals", "pct": 8}, {"species": "Leatherback", "year": 2015, "commodity": "Shells / bekko", "pct": 2},
+      {"species": "Leatherback", "year": 2017, "commodity": "Eggs", "pct": 88}, {"species": "Leatherback", "year": 2017, "commodity": "Live individuals", "pct": 10}, {"species": "Leatherback", "year": 2017, "commodity": "Shells / bekko", "pct": 2},
+      {"species": "Leatherback", "year": 2019, "commodity": "Eggs", "pct": 85}, {"species": "Leatherback", "year": 2019, "commodity": "Live individuals", "pct": 12}, {"species": "Leatherback", "year": 2019, "commodity": "Shells / bekko", "pct": 3}
+    ]
+  },
+  "facet": {
+    "column": {
+      "field": "species",
+      "type": "nominal",
+      "sort": ["Green", "Hawksbill", "Olive Ridley", "Leatherback"],
+      "header": {"title": null, "labelFontSize": 12, "labelFontWeight": "bold"}
+    }
+  },
+  "spec": {
+    "width": 160,
+    "height": 220,
+    "mark": {"type": "bar", "stroke": "white", "strokeWidth": 1},
+    "encoding": {
+      "x": {"field": "year", "type": "ordinal", "axis": {"title": "Year", "labelAngle": 0}},
+      "y": {"field": "pct", "type": "quantitative", "stack": "normalize", "axis": {"title": "Proportion", "format": ".0%"}},
+      "color": {
+        "field": "commodity",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Eggs", "Live individuals", "Shells / bekko"],
+          "range": ["#e9c46a", "#e76f51", "#264653"]
+        },
+        "legend": {"title": "Seized commodity", "orient": "bottom"}
+      },
+      "tooltip": [
+        {"field": "species", "title": "Species"},
+        {"field": "year", "title": "Year"},
+        {"field": "commodity", "title": "Commodity"},
+        {"field": "pct", "title": "Proportion (%)", "format": ".0f"}
+      ]
+    }
+  }
+}
