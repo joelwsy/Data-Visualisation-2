@@ -1,0 +1,167 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Warming Seas Skew Sex Ratios and Kill Eggs",
+    "subtitle": ["Top: SST anomaly by year (warming trend). Middle: how temperature shifts hatchling sex. Bottom: nest failure rates.", "Just 1 degree Celsius of warming can flip a clutch from balanced to almost entirely female. Sources: NOAA ERSST, published TSD studies"],
+    "fontSize": 20,
+    "font": "Georgia",
+    "subtitleFontSize": 12,
+    "subtitleFont": "sans-serif",
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "background": "#f4f6f8",
+  "config": {"view": {"stroke": null}, "axis": {"labelFontSize": 11, "titleFontSize": 12}},
+  "vconcat": [
+    {
+      "title": {"text": "Malaysian coastal SST anomaly over time", "fontSize": 14, "font": "Georgia", "anchor": "start"},
+      "width": "container",
+      "height": 60,
+      "data": {
+        "values": [
+          {"year": 1990, "anomaly": -0.10}, {"year": 1991, "anomaly": -0.05},
+          {"year": 1992, "anomaly": 0.02}, {"year": 1993, "anomaly": -0.03},
+          {"year": 1994, "anomaly": 0.08}, {"year": 1995, "anomaly": 0.12},
+          {"year": 1996, "anomaly": -0.02}, {"year": 1997, "anomaly": 0.18},
+          {"year": 1998, "anomaly": 0.55}, {"year": 1999, "anomaly": -0.08},
+          {"year": 2000, "anomaly": 0.0}, {"year": 2001, "anomaly": 0.05},
+          {"year": 2002, "anomaly": 0.12}, {"year": 2003, "anomaly": -0.04},
+          {"year": 2004, "anomaly": 0.18}, {"year": 2005, "anomaly": 0.25},
+          {"year": 2006, "anomaly": 0.15}, {"year": 2007, "anomaly": 0.22},
+          {"year": 2008, "anomaly": -0.08}, {"year": 2009, "anomaly": 0.30},
+          {"year": 2010, "anomaly": 0.42}, {"year": 2011, "anomaly": -0.05},
+          {"year": 2012, "anomaly": 0.28}, {"year": 2013, "anomaly": 0.35},
+          {"year": 2014, "anomaly": 0.48}, {"year": 2015, "anomaly": 0.72},
+          {"year": 2016, "anomaly": 0.85}, {"year": 2017, "anomaly": 0.50},
+          {"year": 2018, "anomaly": 0.45}, {"year": 2019, "anomaly": 0.62},
+          {"year": 2020, "anomaly": 0.55}, {"year": 2021, "anomaly": 0.58},
+          {"year": 2022, "anomaly": 0.78}, {"year": 2023, "anomaly": 0.95},
+          {"year": 2024, "anomaly": 1.20}
+        ]
+      },
+      "mark": {"type": "rect"},
+      "encoding": {
+        "x": {"field": "year", "type": "ordinal", "axis": {"title": null, "labelAngle": -45, "labelFontSize": 9}},
+        "color": {
+          "field": "anomaly",
+          "type": "quantitative",
+          "scale": {"scheme": "blueorange", "domain": [-0.2, 1.3], "domainMid": 0},
+          "legend": {"title": "SST anomaly (degrees Celsius)", "orient": "right"}
+        },
+        "tooltip": [
+          {"field": "year", "title": "Year"},
+          {"field": "anomaly", "title": "SST anomaly", "format": "+.2f"}
+        ]
+      }
+    },
+    {
+      "title": {"text": "Hatchling sex ratio by sand temperature", "fontSize": 14, "font": "Georgia", "anchor": "start"},
+      "width": "container",
+      "height": 200,
+      "data": {
+        "values": [
+          {"temp": 26.0, "female_pct": 0, "label": null},
+          {"temp": 27.0, "female_pct": 5, "label": null},
+          {"temp": 27.5, "female_pct": 10, "label": null},
+          {"temp": 28.0, "female_pct": 20, "label": null},
+          {"temp": 28.5, "female_pct": 35, "label": null},
+          {"temp": 29.0, "female_pct": 50, "label": "Pivotal temperature: 50/50 sex ratio"},
+          {"temp": 29.5, "female_pct": 75, "label": null},
+          {"temp": 30.0, "female_pct": 90, "label": null},
+          {"temp": 30.5, "female_pct": 95, "label": null},
+          {"temp": 31.0, "female_pct": 98, "label": null},
+          {"temp": 31.5, "female_pct": 99, "label": null},
+          {"temp": 32.0, "female_pct": 100, "label": "Above 31 degrees: almost all female"}
+        ]
+      },
+      "layer": [
+        {
+          "mark": {"type": "area", "opacity": 0.15, "color": "#c2185b", "line": {"color": "#c2185b", "strokeWidth": 3}},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative", "axis": {"title": "Sand incubation temperature (degrees Celsius)"}, "scale": {"domain": [26, 32.5]}},
+            "y": {"field": "female_pct", "type": "quantitative", "axis": {"title": "Female hatchlings (%)"}, "scale": {"domain": [0, 100]}}
+          }
+        },
+        {
+          "mark": {"type": "rule", "color": "#555", "strokeDash": [4, 3]},
+          "encoding": {"y": {"datum": 50}}
+        },
+        {
+          "mark": {"type": "rule", "color": "#c2185b", "strokeDash": [4, 3], "opacity": 0.6},
+          "encoding": {"x": {"datum": 29.0}}
+        },
+        {
+          "transform": [{"filter": "datum.label != null"}],
+          "mark": {"type": "text", "fontSize": 10, "fontStyle": "italic", "color": "#555", "align": "left", "dx": 5, "dy": -8},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative"},
+            "y": {"field": "female_pct", "type": "quantitative"},
+            "text": {"field": "label"}
+          }
+        },
+        {
+          "mark": {"type": "point", "filled": true, "size": 60, "color": "#c2185b"},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative"},
+            "y": {"field": "female_pct", "type": "quantitative"},
+            "tooltip": [
+              {"field": "temp", "title": "Temperature (degrees Celsius)"},
+              {"field": "female_pct", "title": "Female hatchlings (%)"}
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": {"text": "Nest failure rate by temperature", "fontSize": 14, "font": "Georgia", "anchor": "start"},
+      "width": "container",
+      "height": 200,
+      "data": {
+        "values": [
+          {"temp": 26.0, "failure_pct": 8},
+          {"temp": 27.0, "failure_pct": 10},
+          {"temp": 27.5, "failure_pct": 12},
+          {"temp": 28.0, "failure_pct": 14},
+          {"temp": 28.5, "failure_pct": 16},
+          {"temp": 29.0, "failure_pct": 18},
+          {"temp": 29.5, "failure_pct": 22},
+          {"temp": 30.0, "failure_pct": 28},
+          {"temp": 30.5, "failure_pct": 38},
+          {"temp": 31.0, "failure_pct": 52},
+          {"temp": 31.5, "failure_pct": 68},
+          {"temp": 32.0, "failure_pct": 85},
+          {"temp": 32.5, "failure_pct": 95}
+        ]
+      },
+      "layer": [
+        {
+          "mark": {"type": "area", "opacity": 0.12, "color": "#e76f51", "line": {"color": "#e76f51", "strokeWidth": 3}},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative", "axis": {"title": "Sand incubation temperature (degrees Celsius)"}, "scale": {"domain": [26, 32.5]}},
+            "y": {"field": "failure_pct", "type": "quantitative", "axis": {"title": "Nest failure rate (%)"}, "scale": {"domain": [0, 100]}},
+            "tooltip": [
+              {"field": "temp", "title": "Temperature (degrees Celsius)"},
+              {"field": "failure_pct", "title": "Nest failure rate (%)"}
+            ]
+          }
+        },
+        {
+          "mark": {"type": "point", "filled": true, "size": 60, "color": "#e76f51"},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative"},
+            "y": {"field": "failure_pct", "type": "quantitative"}
+          }
+        },
+        {
+          "data": {"values": [{"temp": 30.5, "failure_pct": 42, "label": "Above 30.5 degrees: failure rate accelerates sharply"}]},
+          "mark": {"type": "text", "fontSize": 10, "fontWeight": "bold", "color": "#e76f51", "align": "left", "dx": 5, "dy": -10},
+          "encoding": {
+            "x": {"field": "temp", "type": "quantitative"},
+            "y": {"field": "failure_pct", "type": "quantitative"},
+            "text": {"field": "label"}
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,474 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Decades of Decline Across Four Species",
+    "subtitle": "Solid line = estimated nesting females. Dashed line = total clutches recorded. Sources: Dept. of Fisheries Malaysia, Sabah Parks, SEATRU",
+    "fontSize": 20,
+    "font": "Georgia",
+    "subtitleFontSize": 13,
+    "subtitleFont": "sans-serif",
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "width": "container",
+  "height": 420,
+  "background": "#f4f6f8",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": true,
+      "gridOpacity": 0.15,
+      "labelFontSize": 12,
+      "titleFontSize": 13
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "year": 1960,
+        "species": "Green Turtle",
+        "clutches": 8000,
+        "females": 2700
+      },
+      {
+        "year": 1970,
+        "species": "Green Turtle",
+        "clutches": 10500,
+        "females": 3500
+      },
+      {
+        "year": 1980,
+        "species": "Green Turtle",
+        "clutches": 12000,
+        "females": 4000
+      },
+      {
+        "year": 1990,
+        "species": "Green Turtle",
+        "clutches": 14000,
+        "females": 4700
+      },
+      {
+        "year": 2000,
+        "species": "Green Turtle",
+        "clutches": 16500,
+        "females": 5500
+      },
+      {
+        "year": 2010,
+        "species": "Green Turtle",
+        "clutches": 19000,
+        "females": 6300
+      },
+      {
+        "year": 2015,
+        "species": "Green Turtle",
+        "clutches": 20000,
+        "females": 6700
+      },
+      {
+        "year": 2020,
+        "species": "Green Turtle",
+        "clutches": 22000,
+        "females": 7300
+      },
+      {
+        "year": 2023,
+        "species": "Green Turtle",
+        "clutches": 23000,
+        "females": 7700
+      },
+      {
+        "year": 1960,
+        "species": "Hawksbill",
+        "clutches": 2200,
+        "females": 730
+      },
+      {
+        "year": 1970,
+        "species": "Hawksbill",
+        "clutches": 1800,
+        "females": 600
+      },
+      {
+        "year": 1980,
+        "species": "Hawksbill",
+        "clutches": 1400,
+        "females": 470
+      },
+      {
+        "year": 1990,
+        "species": "Hawksbill",
+        "clutches": 900,
+        "females": 300
+      },
+      {
+        "year": 2000,
+        "species": "Hawksbill",
+        "clutches": 600,
+        "females": 200
+      },
+      {
+        "year": 2010,
+        "species": "Hawksbill",
+        "clutches": 500,
+        "females": 170
+      },
+      {
+        "year": 2015,
+        "species": "Hawksbill",
+        "clutches": 700,
+        "females": 230
+      },
+      {
+        "year": 2020,
+        "species": "Hawksbill",
+        "clutches": 1000,
+        "females": 330
+      },
+      {
+        "year": 2023,
+        "species": "Hawksbill",
+        "clutches": 1200,
+        "females": 400
+      },
+      {
+        "year": 1960,
+        "species": "Olive Ridley",
+        "clutches": 400,
+        "females": 200
+      },
+      {
+        "year": 1970,
+        "species": "Olive Ridley",
+        "clutches": 280,
+        "females": 140
+      },
+      {
+        "year": 1980,
+        "species": "Olive Ridley",
+        "clutches": 150,
+        "females": 75
+      },
+      {
+        "year": 1990,
+        "species": "Olive Ridley",
+        "clutches": 60,
+        "females": 30
+      },
+      {
+        "year": 2000,
+        "species": "Olive Ridley",
+        "clutches": 20,
+        "females": 10
+      },
+      {
+        "year": 2010,
+        "species": "Olive Ridley",
+        "clutches": 8,
+        "females": 4
+      },
+      {
+        "year": 2015,
+        "species": "Olive Ridley",
+        "clutches": 5,
+        "females": 3
+      },
+      {
+        "year": 2020,
+        "species": "Olive Ridley",
+        "clutches": 4,
+        "females": 2
+      },
+      {
+        "year": 2023,
+        "species": "Olive Ridley",
+        "clutches": 3,
+        "females": 2
+      },
+      {
+        "year": 1960,
+        "species": "Leatherback",
+        "clutches": 10000,
+        "females": 2000
+      },
+      {
+        "year": 1970,
+        "species": "Leatherback",
+        "clutches": 6800,
+        "females": 1360
+      },
+      {
+        "year": 1980,
+        "species": "Leatherback",
+        "clutches": 2500,
+        "females": 500
+      },
+      {
+        "year": 1990,
+        "species": "Leatherback",
+        "clutches": 320,
+        "females": 64
+      },
+      {
+        "year": 2000,
+        "species": "Leatherback",
+        "clutches": 13,
+        "females": 3
+      },
+      {
+        "year": 2010,
+        "species": "Leatherback",
+        "clutches": 1,
+        "females": 1
+      },
+      {
+        "year": 2015,
+        "species": "Leatherback",
+        "clutches": 0,
+        "females": 0
+      },
+      {
+        "year": 2020,
+        "species": "Leatherback",
+        "clutches": 0,
+        "females": 0
+      },
+      {
+        "year": 2023,
+        "species": "Leatherback",
+        "clutches": 0,
+        "females": 0
+      }
+    ]
+  },
+  "transform": [
+    {
+      "fold": [
+        "clutches",
+        "females"
+      ],
+      "as": [
+        "metric",
+        "value"
+      ]
+    },
+    {
+      "calculate": "datum.metric == 'clutches' ? 'Total clutches' : 'Estimated nesting females'",
+      "as": "metric_label"
+    }
+  ],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": {
+          "size": 40,
+          "filled": true
+        }
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative",
+          "axis": {
+            "title": "Year",
+            "format": "d",
+            "tickCount": 8
+          },
+          "scale": {
+            "domain": [
+              1958,
+              2025
+            ]
+          }
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative",
+          "axis": {
+            "title": "Count"
+          },
+          "scale": {
+            "type": "log",
+            "domain": [
+              1,
+              25000
+            ]
+          }
+        },
+        "color": {
+          "field": "species",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Green Turtle",
+              "Hawksbill",
+              "Olive Ridley",
+              "Leatherback"
+            ],
+            "range": [
+              "#0077b6",
+              "#e9c46a",
+              "#f4a261",
+              "#264653"
+            ]
+          },
+          "legend": {
+            "title": "Species",
+            "orient": "right",
+            "titleFontSize": 12,
+            "labelFontSize": 11
+          }
+        },
+        "strokeDash": {
+          "field": "metric_label",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Estimated nesting females",
+              "Total clutches"
+            ],
+            "range": [
+              [
+                0
+              ],
+              [
+                8,
+                4
+              ]
+            ]
+          },
+          "legend": {
+            "title": "Metric",
+            "orient": "right",
+            "symbolStrokeWidth": 2,
+            "titleFontSize": 12,
+            "labelFontSize": 11
+          }
+        },
+        "strokeWidth": {
+          "value": 2.5
+        },
+        "detail": [
+          {
+            "field": "species"
+          },
+          {
+            "field": "metric_label"
+          }
+        ],
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "species",
+            "title": "Species"
+          },
+          {
+            "field": "metric_label",
+            "title": "Metric"
+          },
+          {
+            "field": "value",
+            "title": "Count",
+            "format": ","
+          }
+        ]
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2015,
+            "value": 1,
+            "label": "Leatherbacks no longer nest in Terengganu"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#264653",
+        "align": "right",
+        "dx": -10,
+        "dy": -12
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2008
+          }
+        ]
+      },
+      "mark": {
+        "type": "rule",
+        "color": "#264653",
+        "strokeDash": [
+          4,
+          3
+        ],
+        "strokeWidth": 1.2
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 2008,
+            "value": 20000,
+            "label": "2008: last confirmed leatherback nest"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 10,
+        "fontStyle": "italic",
+        "color": "#264653",
+        "align": "left",
+        "dx": 4
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    }
+  ]
+}
