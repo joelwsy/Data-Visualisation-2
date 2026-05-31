@@ -18,37 +18,39 @@
 
     body {
       font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
-      background-color: #f4f6f8;
-      color: #2c2c2c;
-      line-height: 1.85;
-      font-size: 17px;
+      background: radial-gradient(circle at top, #f9fbfc 0%, #eef2f5 55%, #e8edf2 100%);
+      color: #27303a;
+      line-height: 1.9;
+      font-size: 19px;
+      letter-spacing: 0.1px;
     }
 
     /* ---- HEADER ---- */
     .header {
       text-align: center;
-      padding: 60px 30px 45px;
-      background: linear-gradient(135deg, #1b3a4b, #2a9d8f);
+      padding: 70px 30px 55px;
+      background: linear-gradient(140deg, #153444 10%, #2a9d8f 60%, #7cccb7 110%);
       color: white;
+      box-shadow: 0 12px 30px rgba(21, 52, 68, 0.18);
     }
     .header h1 {
       font-family: 'Lora', Georgia, serif;
-      font-size: 3em;
+      font-size: 3.35em;
       font-weight: 700;
-      letter-spacing: 0.5px;
+      letter-spacing: 0.8px;
       margin-bottom: 12px;
     }
     .header p {
-      font-size: 1.15em;
-      opacity: 0.9;
-      max-width: 650px;
+      font-size: 1.25em;
+      opacity: 0.88;
+      max-width: 700px;
       margin: 0 auto;
       line-height: 1.6;
     }
 
     /* ---- MAIN CONTAINER ---- */
     .container {
-      max-width: 1300px;
+      max-width: 1260px;
       margin: 0 auto;
       padding: 30px 40px;
     }
@@ -56,20 +58,20 @@
     /* ---- PILLAR TITLES ---- */
     .pillar-title {
       font-family: 'Lora', Georgia, serif;
-      font-size: 2em;
+      font-size: 2.2em;
       font-weight: 700;
-      color: #1b3a4b;
-      border-bottom: 3px solid #2a9d8f;
+      color: #18313f;
+      border-bottom: 3px solid rgba(42, 157, 143, 0.7);
       padding-bottom: 10px;
       margin: 60px 0 20px;
     }
 
     /* ---- NARRATIVE TEXT ---- */
     .narrative {
-      font-size: 1.05em;
-      color: #444;
+      font-size: 1.12em;
+      color: #3c4652;
       margin-bottom: 28px;
-      max-width: 100%;
+      max-width: 980px;
       text-align: justify;
     }
 
@@ -85,7 +87,8 @@
       border-radius: 10px;
       padding: 18px;
       text-align: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      box-shadow: 0 10px 24px rgba(17, 42, 66, 0.08);
+      border: 1px solid rgba(27, 58, 75, 0.05);
       transition: transform 0.2s;
     }
     .species-card:hover { transform: translateY(-3px); }
@@ -99,13 +102,28 @@
     }
     .species-card h3 {
       font-family: 'Lora', Georgia, serif;
-      font-size: 1.1em;
+      font-size: 1.25em;
       color: #1b3a4b;
       margin-bottom: 4px;
     }
     .species-card p {
-      font-size: 0.85em;
-      color: #777;
+      font-size: 0.95em;
+      color: #5a6470;
+    }
+    .species-meta {
+      margin-top: 8px;
+      text-align: left;
+      color: #556070;
+      font-size: 0.9em;
+      line-height: 1.5;
+    }
+    .species-meta strong {
+      color: #18313f;
+      font-weight: 600;
+    }
+    .species-scientific {
+      font-style: italic;
+      color: #203645;
     }
 
     /* ---- CHART CONTAINERS ---- */
@@ -115,7 +133,8 @@
       background: white;
       border-radius: 10px;
       padding: 20px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+      box-shadow: 0 12px 26px rgba(17, 42, 66, 0.08);
+      border: 1px solid rgba(27, 58, 75, 0.05);
     }
 
     /* ---- SECTION DIVIDER ---- */
@@ -123,7 +142,7 @@
       width: 60px;
       height: 3px;
       background: #2a9d8f;
-      margin: 50px auto;
+      margin: 55px auto;
       border-radius: 2px;
     }
 
@@ -131,11 +150,11 @@
     .footer {
       text-align: center;
       padding: 35px 20px;
-      color: #888;
-      font-size: 0.9em;
+      color: #7b8794;
+      font-size: 0.95em;
       border-top: 1px solid #ddd;
       margin-top: 50px;
-      background: #f0f2f4;
+      background: #eef2f5;
     }
     .footer p { margin: 4px 0; }
 
@@ -170,21 +189,41 @@
         <img src="images/green_turtle.jpg" alt="Green Turtle">
         <h3>Green Turtle</h3>
         <p>Endangered. 10,000 to 15,000 nests/year.</p>
+        <div class="species-meta">
+          <div><strong>Scientific:</strong> <span class="species-scientific">Chelonia mydas</span></div>
+          <div><strong>IUCN:</strong> Endangered</div>
+          <div><strong>Nesting states:</strong> Terengganu, Sabah, Sarawak</div>
+        </div>
       </div>
       <div class="species-card">
         <img src="images/hawksbill_turtle.jpg" alt="Hawksbill Turtle">
         <h3>Hawksbill Turtle</h3>
         <p>Critically Endangered. 400 to 500 nests/year.</p>
+        <div class="species-meta">
+          <div><strong>Scientific:</strong> <span class="species-scientific">Eretmochelys imbricata</span></div>
+          <div><strong>IUCN:</strong> Critically Endangered</div>
+          <div><strong>Nesting states:</strong> Sabah, Terengganu, Melaka</div>
+        </div>
       </div>
       <div class="species-card">
         <img src="images/olive_ridley_turtle.jpg" alt="Olive Ridley Turtle">
         <h3>Olive Ridley Turtle</h3>
         <p>Vulnerable. Under 100 nests/year.</p>
+        <div class="species-meta">
+          <div><strong>Scientific:</strong> <span class="species-scientific">Lepidochelys olivacea</span></div>
+          <div><strong>IUCN:</strong> Vulnerable</div>
+          <div><strong>Nesting states:</strong> Terengganu, Pahang</div>
+        </div>
       </div>
       <div class="species-card">
         <img src="images/leatherback_turtle.jpg" alt="Leatherback Turtle">
         <h3>Leatherback Turtle</h3>
         <p>Locally extinct. 0 to 2 nests/year.</p>
+        <div class="species-meta">
+          <div><strong>Scientific:</strong> <span class="species-scientific">Dermochelys coriacea</span></div>
+          <div><strong>IUCN:</strong> Critically Endangered (globally)</div>
+          <div><strong>Nesting states:</strong> Terengganu (Rantau Abang)</div>
+        </div>
       </div>
     </div>
 
