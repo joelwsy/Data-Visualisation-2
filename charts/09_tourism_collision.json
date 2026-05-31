@@ -1,0 +1,93 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The Tourism Collision",
+    "subtitle": "Comparing normalized tourist arrivals against turtle nesting volume by state.",
+    "font": "Cinzel",
+    "fontSize": 22,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "data": {
+    "values": [
+      {"state": "Melaka", "tourists": 14000000, "nests": 600},
+      {"state": "Penang", "tourists": 9000000, "nests": 80},
+      {"state": "Pahang", "tourists": 7500000, "nests": 800},
+      {"state": "Terengganu", "tourists": 4000000, "nests": 6000},
+      {"state": "Sabah", "tourists": 3500000, "nests": 18000}
+    ]
+  },
+  "transform": [
+    {
+      "joinaggregate": [
+        {"op": "max", "field": "tourists", "as": "max_tourists"},
+        {"op": "max", "field": "nests", "as": "max_nests"}
+      ]
+    },
+    {
+      "calculate": "(datum.tourists / datum.max_tourists) * 100",
+      "as": "Tourist Arrivals Index"
+    },
+    {
+      "calculate": "(datum.nests / datum.max_nests) * 100",
+      "as": "Nest Count Index"
+    },
+    {
+      "fold": ["Tourist Arrivals Index", "Nest Count Index"],
+      "as": ["Metric", "Index Value"]
+    }
+  ],
+  "facet": {
+    "row": {
+      "field": "state",
+      "type": "nominal",
+      "sort": "-y",
+      "title": null,
+      "header": {
+        "labelFont": "Plus Jakarta Sans",
+        "labelFontSize": 15,
+        "labelFontWeight": "bold"
+      }
+    }
+  },
+  "spec": {
+    "width": "container",
+    "height": 45,
+    "mark": {"type": "bar", "tooltip": true, "cornerRadiusEnd": 4},
+    "encoding": {
+      "y": {"field": "Metric", "type": "nominal", "axis": null},
+      "x": {
+        "field": "Index Value",
+        "type": "quantitative",
+        "axis": {
+          "title": "Normalized Index (0 to 100)",
+          "grid": false,
+          "titleFont": "Plus Jakarta Sans"
+        }
+      },
+      "color": {
+        "field": "Metric",
+        "type": "nominal",
+        "scale": {
+          "domain": ["Tourist Arrivals Index", "Nest Count Index"],
+          "range": ["#e76f51", "#2a9d8f"]
+        },
+        "legend": {
+          "title": null,
+          "orient": "top",
+          "labelFont": "Plus Jakarta Sans",
+          "labelFontSize": 14
+        }
+      },
+      "tooltip": [
+        {"field": "state", "title": "State"},
+        {"field": "Metric", "title": "Metric"},
+        {"field": "tourists", "title": "Raw Tourist Arrivals", "format": ","},
+        {"field": "nests", "title": "Raw Nest Count", "format": ","},
+        {"field": "Index Value", "title": "Calculated Index", "format": ".1f"}
+      ]
+    }
+  },
+  "resolve": {"scale": {"y": "independent"}},
+  "config": {"font": "Plus Jakarta Sans", "view": {"stroke": "transparent"}}
+}

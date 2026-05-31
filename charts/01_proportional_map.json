@@ -2,144 +2,427 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Where Malaysia's Sea Turtles Nest",
-    "subtitle": "Circle size encodes annual clutches. Ocean colour shows mean coastal SST. Sources: Dept. of Fisheries Malaysia, NOAA ERSST",
-    "fontSize": 20,
+    "subtitle": "Circle size = annual clutches recorded. Colour = species. Use dropdowns to filter.",
+    "fontSize": 22,
     "font": "Georgia",
-    "subtitleFontSize": 13,
-    "subtitleFont": "sans-serif",
+    "subtitleFontSize": 14,
+    "subtitleFont": "Source Sans 3, sans-serif",
     "anchor": "start",
     "subtitleColor": "#666"
   },
   "width": "container",
-  "height": 480,
-  "background": "#f4f6f8",
-  "config": {"view": {"stroke": null}},
+  "height": 500,
+  "background": "#cce5f0",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "legend": {
+      "labelFontSize": 13,
+      "titleFontSize": 13
+    }
+  },
   "params": [
+    {
+      "name": "speciesFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Green Turtle",
+          "Hawksbill",
+          "Olive Ridley",
+          "Leatherback"
+        ],
+        "name": "Species: "
+      }
+    },
+    {
+      "name": "stateFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Sabah",
+          "Terengganu",
+          "Sarawak",
+          "Melaka",
+          "Perak",
+          "Pahang",
+          "Penang"
+        ],
+        "name": "State: "
+      }
+    },
     {
       "name": "zoom",
       "value": 2200,
-      "bind": {"input": "range", "min": 1200, "max": 5000, "step": 100, "name": "Zoom: "}
+      "bind": {
+        "input": "range",
+        "min": 1200,
+        "max": 5000,
+        "step": 100,
+        "name": "Zoom: "
+      }
     },
     {
       "name": "centerLon",
       "value": 109,
-      "bind": {"input": "range", "min": 99, "max": 119, "step": 0.5, "name": "Pan (longitude): "}
+      "bind": {
+        "input": "range",
+        "min": 99,
+        "max": 119,
+        "step": 0.5,
+        "name": "Pan East/West: "
+      }
+    },
+    {
+      "name": "centerLat",
+      "value": 4,
+      "bind": {
+        "input": "range",
+        "min": -1,
+        "max": 9,
+        "step": 0.5,
+        "name": "Pan North/South: "
+      }
     }
   ],
-  "projection": {"type": "equalEarth", "center": {"expr": "[centerLon, 4]"}, "scale": {"expr": "zoom"}},
+  "projection": {
+    "type": "equalEarth",
+    "center": {
+      "expr": "[centerLon, centerLat]"
+    },
+    "scale": {
+      "expr": "zoom"
+    }
+  },
   "layer": [
     {
-      "data": {"values": [{"x": 0}]},
-      "mark": {"type": "rect", "color": "#cce0eb"},
-      "encoding": {"x": {"value": 0}, "y": {"value": 0}, "x2": {"value": 1400}, "y2": {"value": 520}}
-    },
-    {
       "data": {
-        "values": [
-          {"lat": 6.5, "lon": 117.0, "sst": 29.4}, {"lat": 6.0, "lon": 118.5, "sst": 29.6},
-          {"lat": 5.5, "lon": 119.0, "sst": 29.5}, {"lat": 5.0, "lon": 118.0, "sst": 29.3},
-          {"lat": 4.5, "lon": 117.5, "sst": 29.2}, {"lat": 6.0, "lon": 116.0, "sst": 29.1},
-          {"lat": 5.5, "lon": 115.0, "sst": 29.0}, {"lat": 3.0, "lon": 111.0, "sst": 29.6},
-          {"lat": 2.0, "lon": 110.0, "sst": 29.8}, {"lat": 2.5, "lon": 112.0, "sst": 29.5},
-          {"lat": 6.5, "lon": 103.0, "sst": 29.7}, {"lat": 5.5, "lon": 103.5, "sst": 29.8},
-          {"lat": 5.0, "lon": 104.0, "sst": 30.0}, {"lat": 4.0, "lon": 103.8, "sst": 30.1},
-          {"lat": 3.0, "lon": 104.5, "sst": 29.9}, {"lat": 2.5, "lon": 104.8, "sst": 29.7},
-          {"lat": 2.0, "lon": 103.5, "sst": 30.2}, {"lat": 1.5, "lon": 103.0, "sst": 30.3},
-          {"lat": 3.0, "lon": 101.0, "sst": 30.0}, {"lat": 4.0, "lon": 100.0, "sst": 30.1},
-          {"lat": 5.0, "lon": 100.0, "sst": 29.9}, {"lat": 6.0, "lon": 100.5, "sst": 29.8},
-          {"lat": 2.0, "lon": 102.0, "sst": 30.2}, {"lat": 3.5, "lon": 103.5, "sst": 30.0},
-          {"lat": 4.5, "lon": 103.0, "sst": 29.9}, {"lat": 1.5, "lon": 104.0, "sst": 30.1}
-        ]
-      },
-      "mark": {"type": "circle", "opacity": 0.35, "size": 800},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "color": {
-          "field": "sst",
-          "type": "quantitative",
-          "scale": {"scheme": "blueorange", "domain": [28.8, 30.5], "domainMid": 29.5},
-          "legend": {"title": "Mean SST (degrees Celsius)", "orient": "right", "offset": 10}
+        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
         }
+      },
+      "transform": [
+        {
+          "filter": "datum.properties.NAME != 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#b0afa9",
+        "stroke": "#888",
+        "strokeWidth": 0.4
       }
     },
     {
       "data": {
         "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+        "format": {
+          "type": "topojson",
+          "feature": "ne_110m_admin_0_countries"
+        }
       },
-      "transform": [{"filter": "datum.properties.NAME != 'Malaysia'"}],
-      "mark": {"type": "geoshape", "fill": "#c0bfba", "stroke": "#999", "strokeWidth": 0.4}
-    },
-    {
-      "data": {
-        "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/ne_110m_admin_0_countries.topojson",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-      },
-      "transform": [{"filter": "datum.properties.NAME == 'Malaysia'"}],
-      "mark": {"type": "geoshape", "fill": "#d5e8d4", "stroke": "#5a7d53", "strokeWidth": 1.5}
+      "transform": [
+        {
+          "filter": "datum.properties.NAME == 'Malaysia'"
+        }
+      ],
+      "mark": {
+        "type": "geoshape",
+        "fill": "#daecd9",
+        "stroke": "#5a7d53",
+        "strokeWidth": 1.8
+      }
     },
     {
       "data": {
         "values": [
-          {"beach": "Turtle Islands Park (Selingaan)", "state": "Sabah", "lat": 6.18, "lon": 118.06, "clutches": 17500, "species": "Green Turtle", "note": "Highest nesting density in Malaysia"},
-          {"beach": "Gulisaan Island", "state": "Sabah", "lat": 6.10, "lon": 117.88, "clutches": 2200, "species": "Green Turtle", "note": "Part of Turtle Islands Park"},
-          {"beach": "Libaran Island", "state": "Sabah", "lat": 5.95, "lon": 118.25, "clutches": 1800, "species": "Green Turtle", "note": "Community-led conservation"},
-          {"beach": "Sipadan area", "state": "Sabah", "lat": 4.11, "lon": 118.63, "clutches": 450, "species": "Green Turtle", "note": "Semporna, also hawksbill shells harvested illegally"},
-          {"beach": "Chagar Hutang (Redang)", "state": "Terengganu", "lat": 5.81, "lon": 103.01, "clutches": 1200, "species": "Hawksbill", "note": "SEATRU monitored since 1993"},
-          {"beach": "Rantau Abang", "state": "Terengganu", "lat": 4.82, "lon": 103.41, "clutches": 0, "species": "Leatherback", "note": "Once 10,000+ nests/yr. Locally extinct."},
-          {"beach": "Ma Daerah", "state": "Terengganu", "lat": 4.70, "lon": 103.44, "clutches": 800, "species": "Green Turtle", "note": "Important Terengganu nesting site"},
-          {"beach": "Pulau Perhentian", "state": "Terengganu", "lat": 5.90, "lon": 102.75, "clutches": 350, "species": "Green Turtle", "note": "Mixed species, tourist area"},
-          {"beach": "Talang-Satang Islands", "state": "Sarawak", "lat": 1.89, "lon": 109.76, "clutches": 4000, "species": "Green Turtle", "note": "3,000 to 5,000 clutches annually"},
-          {"beach": "Melaka coast", "state": "Melaka", "lat": 2.20, "lon": 102.15, "clutches": 1000, "species": "Hawksbill", "note": "Increased to ~1,000 clutches by 2022"},
-          {"beach": "Segari (Perak)", "state": "Perak", "lat": 4.32, "lon": 100.55, "clutches": 80, "species": "Olive Ridley", "note": "Kamaruddin et al. 2014 study site"},
-          {"beach": "Pulau Tioman", "state": "Pahang", "lat": 2.81, "lon": 104.16, "clutches": 180, "species": "Hawksbill", "note": "Marine Park"},
-          {"beach": "Pantai Kemasik", "state": "Pahang", "lat": 4.44, "lon": 103.46, "clutches": 120, "species": "Green Turtle", "note": "Secondary nesting site"},
-          {"beach": "Penang coast", "state": "Penang", "lat": 5.28, "lon": 100.20, "clutches": 5, "species": "Olive Ridley", "note": "Fewer than 5 clutches per year"}
-        ]
-      },
-      "mark": {"type": "circle", "opacity": 0.75, "stroke": "#333", "strokeWidth": 0.8},
-      "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "size": {
-          "field": "clutches",
-          "type": "quantitative",
-          "scale": {"type": "sqrt", "domain": [0, 18000], "range": [15, 2000]},
-          "legend": {"title": "Annual clutches", "orient": "right", "offset": 10}
-        },
-        "color": {
-          "field": "species",
-          "type": "nominal",
-          "scale": {
-            "domain": ["Green Turtle", "Hawksbill", "Olive Ridley", "Leatherback"],
-            "range": ["#0077b6", "#e9c46a", "#f4a261", "#264653"]
+          {
+            "beach": "Turtle Islands Park (Selingaan)",
+            "state": "Sabah",
+            "lat": 6.18,
+            "lon": 118.06,
+            "clutches": 17500,
+            "species": "Green Turtle",
+            "note": "Highest nesting density in Malaysia \u2014 Sabah Parks"
           },
-          "legend": {"title": "Species", "orient": "right", "offset": 10}
-        },
-        "tooltip": [
-          {"field": "beach", "title": "Beach"},
-          {"field": "state", "title": "State"},
-          {"field": "species", "title": "Species"},
-          {"field": "clutches", "title": "Annual clutches", "format": ","},
-          {"field": "note", "title": "Note"}
+          {
+            "beach": "Gulisaan Island",
+            "state": "Sabah",
+            "lat": 6.1,
+            "lon": 117.85,
+            "clutches": 2200,
+            "species": "Green Turtle",
+            "note": "Part of Turtle Islands Park"
+          },
+          {
+            "beach": "Libaran Island",
+            "state": "Sabah",
+            "lat": 5.95,
+            "lon": 118.28,
+            "clutches": 1800,
+            "species": "Green Turtle",
+            "note": "Community-led conservation"
+          },
+          {
+            "beach": "Sipadan (Semporna)",
+            "state": "Sabah",
+            "lat": 4.11,
+            "lon": 118.63,
+            "clutches": 450,
+            "species": "Green Turtle",
+            "note": "Hawksbill shells also harvested illegally here"
+          },
+          {
+            "beach": "Chagar Hutang (Redang)",
+            "state": "Terengganu",
+            "lat": 5.81,
+            "lon": 103.01,
+            "clutches": 1200,
+            "species": "Hawksbill",
+            "note": "SEATRU-monitored since 1993"
+          },
+          {
+            "beach": "Rantau Abang",
+            "state": "Terengganu",
+            "lat": 4.82,
+            "lon": 103.42,
+            "clutches": 2,
+            "species": "Leatherback",
+            "note": "Once 10,000+ nests/yr. Functionally extinct since 2008."
+          },
+          {
+            "beach": "Ma' Daerah",
+            "state": "Terengganu",
+            "lat": 4.69,
+            "lon": 103.46,
+            "clutches": 800,
+            "species": "Green Turtle",
+            "note": "Important Terengganu nesting site"
+          },
+          {
+            "beach": "Pulau Perhentian",
+            "state": "Terengganu",
+            "lat": 5.9,
+            "lon": 102.74,
+            "clutches": 350,
+            "species": "Green Turtle",
+            "note": "Mixed species, popular dive destination"
+          },
+          {
+            "beach": "Talang-Satang Islands",
+            "state": "Sarawak",
+            "lat": 1.89,
+            "lon": 109.76,
+            "clutches": 4000,
+            "species": "Green Turtle",
+            "note": "Sarawak's first marine protected area (1999) \u2014 3,000 to 5,000 clutches/yr"
+          },
+          {
+            "beach": "Melaka coast",
+            "state": "Melaka",
+            "lat": 2.2,
+            "lon": 102.12,
+            "clutches": 1000,
+            "species": "Hawksbill",
+            "note": "Reached ~1,000 clutches in 2022 \u2014 significant recovery"
+          },
+          {
+            "beach": "Segari",
+            "state": "Perak",
+            "lat": 4.32,
+            "lon": 100.55,
+            "clutches": 80,
+            "species": "Olive Ridley",
+            "note": "Kamaruddin et al. (2014) study site \u2014 107,820 eggs recorded 1998-2013"
+          },
+          {
+            "beach": "Pulau Tioman",
+            "state": "Pahang",
+            "lat": 2.81,
+            "lon": 104.16,
+            "clutches": 180,
+            "species": "Hawksbill",
+            "note": "Marine Park \u2014 Hawksbill focus"
+          },
+          {
+            "beach": "Pantai Kemasik",
+            "state": "Pahang",
+            "lat": 4.44,
+            "lon": 103.46,
+            "clutches": 120,
+            "species": "Green Turtle",
+            "note": "Secondary Terengganu/Pahang border site"
+          },
+          {
+            "beach": "Penang coast",
+            "state": "Penang",
+            "lat": 5.28,
+            "lon": 100.2,
+            "clutches": 5,
+            "species": "Olive Ridley",
+            "note": "Fewer than 5 clutches per year \u2014 critically rare"
+          }
         ]
-      }
+      },
+      "transform": [
+        {
+          "filter": "stateFilter == 'All' || datum.state == stateFilter"
+        },
+        {
+          "filter": "speciesFilter == 'All' || datum.species == speciesFilter"
+        }
+      ],
+      "layer": [
+        {
+          "mark": {
+            "type": "circle",
+            "stroke": "#333",
+            "strokeWidth": 0.8
+          },
+          "encoding": {
+            "longitude": {
+              "field": "lon",
+              "type": "quantitative"
+            },
+            "latitude": {
+              "field": "lat",
+              "type": "quantitative"
+            },
+            "size": {
+              "field": "clutches",
+              "type": "quantitative",
+              "scale": {
+                "type": "sqrt",
+                "domain": [
+                  0,
+                  18000
+                ],
+                "range": [
+                  150,
+                  2200
+                ]
+              },
+              "legend": {
+                "title": "Annual clutches",
+                "orient": "right",
+                "offset": 20,
+                "values": [
+                  100,
+                  1000,
+                  5000,
+                  10000,
+                  17500
+                ]
+              }
+            },
+            "color": {
+              "field": "species",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Green Turtle",
+                  "Hawksbill",
+                  "Olive Ridley",
+                  "Leatherback"
+                ],
+                "range": [
+                  "#0077b6",
+                  "#e9c46a",
+                  "#f4a261",
+                  "#264653"
+                ]
+              },
+              "legend": {
+                "title": "Species",
+                "orient": "right",
+                "offset": 20
+              }
+            },
+            "tooltip": [
+              {
+                "field": "beach",
+                "title": "Beach"
+              },
+              {
+                "field": "state",
+                "title": "State"
+              },
+              {
+                "field": "species",
+                "title": "Species"
+              },
+              {
+                "field": "clutches",
+                "title": "Annual clutches",
+                "format": ","
+              },
+              {
+                "field": "note",
+                "title": "Note"
+              }
+            ]
+          }
+        }
+      ]
     },
     {
       "data": {
         "values": [
-          {"lat": 6.55, "lon": 117.2, "label": "Sabah: largest stronghold"},
-          {"lat": 5.4, "lon": 101.5, "label": "Terengganu: historic heartland"},
-          {"lat": 4.4, "lon": 104.5, "label": "Rantau Abang: leatherbacks gone"},
-          {"lat": 1.5, "lon": 109.0, "label": "Sarawak: 3,000 to 5,000 clutches/yr"}
+          {
+            "lat": 6.6,
+            "lon": 116.8,
+            "label": "Sabah \u2014 Malaysia's largest stronghold"
+          },
+          {
+            "lat": 6.1,
+            "lon": 101.2,
+            "label": "Terengganu \u2014 historic heartland"
+          },
+          {
+            "lat": 4.55,
+            "lon": 104.85,
+            "label": "Rantau Abang: leatherbacks extinct"
+          },
+          {
+            "lat": 1.3,
+            "lon": 108.5,
+            "label": "Sarawak \u2014 3,000 to 5,000 clutches/yr"
+          }
         ]
       },
-      "mark": {"type": "text", "fontSize": 11, "fontStyle": "italic", "fontWeight": "bold", "color": "#3d3d3d", "align": "left", "dx": 5},
+      "transform": [
+        {
+          "filter": "stateFilter == 'All' || indexof(datum.label, stateFilter) >= 0"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontStyle": "italic",
+        "fontWeight": "bold",
+        "color": "#2c2c2c",
+        "align": "left",
+        "dx": 5
+      },
       "encoding": {
-        "longitude": {"field": "lon", "type": "quantitative"},
-        "latitude": {"field": "lat", "type": "quantitative"},
-        "text": {"field": "label"}
+        "longitude": {
+          "field": "lon",
+          "type": "quantitative"
+        },
+        "latitude": {
+          "field": "lat",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
       }
     }
   ]

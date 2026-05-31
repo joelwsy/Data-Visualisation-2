@@ -1,0 +1,217 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Strict Egg Bans Protect More Turtles",
+    "subtitle": "Comparing the percentage of eggs protected in hatcheries against those sold in markets.",
+    "fontSize": 22,
+    "font": "Cinzel",
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "width": "container",
+  "height": 380,
+  "background": "#f4f6f8",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 13,
+      "titleFontSize": 14,
+      "labelFont": "Plus Jakarta Sans",
+      "titleFont": "Plus Jakarta Sans"
+    },
+    "text": {
+      "font": "Plus Jakarta Sans"
+    },
+    "legend": {
+      "labelFont": "Plus Jakarta Sans",
+      "titleFont": "Plus Jakarta Sans"
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "state": "Sabah",
+        "hatchery_pct": 95,
+        "market_pct": 2,
+        "legislation": "Total ban",
+        "net": 93
+      },
+      {
+        "state": "Sarawak",
+        "hatchery_pct": 88,
+        "market_pct": 5,
+        "legislation": "Total ban",
+        "net": 83
+      },
+      {
+        "state": "Terengganu",
+        "hatchery_pct": 55,
+        "market_pct": 38,
+        "legislation": "Partial protection",
+        "net": 17
+      },
+      {
+        "state": "Pahang",
+        "hatchery_pct": 48,
+        "market_pct": 42,
+        "legislation": "Partial protection",
+        "net": 6
+      },
+      {
+        "state": "Melaka",
+        "hatchery_pct": 40,
+        "market_pct": 52,
+        "legislation": "Legal trade allowed",
+        "net": -12
+      },
+      {
+        "state": "Johor",
+        "hatchery_pct": 32,
+        "market_pct": 58,
+        "legislation": "Legal trade allowed",
+        "net": -26
+      },
+      {
+        "state": "Perak",
+        "hatchery_pct": 28,
+        "market_pct": 65,
+        "legislation": "Legal trade allowed",
+        "net": -37
+      },
+      {
+        "state": "Penang",
+        "hatchery_pct": 18,
+        "market_pct": 72,
+        "legislation": "Legal trade allowed",
+        "net": -54
+      }
+    ]
+  },
+  "params": [],
+  "layer": [
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#aaa",
+        "strokeWidth": 1
+      },
+      "encoding": {
+        "x": {
+          "datum": 0
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "bar",
+        "height": 28,
+        "cornerRadiusEnd": 4
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "net",
+            "order": "descending"
+          },
+          "axis": {
+            "title": null,
+            "labelFontSize": 14
+          }
+        },
+        "x": {
+          "field": "net",
+          "type": "quantitative",
+          "axis": {
+            "title": "← More eggs lost to markets          |          More eggs saved in hatcheries →",
+            "titleFontSize": 13,
+            "titlePadding": 10
+          },
+          "scale": {
+            "domain": [
+              -70,
+              110
+            ]
+          }
+        },
+        "color": {
+          "field": "legislation",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Total ban",
+              "Partial protection",
+              "Legal trade allowed"
+            ],
+            "range": [
+              "#0077b6",
+              "#e9c46a",
+              "#e76f51"
+            ]
+          },
+          "legend": {
+            "title": "Egg sale legislation",
+            "orient": "right",
+            "labelFontSize": 13,
+            "titleFontSize": 13
+          }
+        },
+        "tooltip": [
+          {
+            "field": "state",
+            "title": "State"
+          },
+          {
+            "field": "legislation",
+            "title": "Legislation"
+          },
+          {
+            "field": "hatchery_pct",
+            "title": "Eggs reaching hatchery (%)"
+          },
+          {
+            "field": "market_pct",
+            "title": "Eggs commercially sold (%)"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 6,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "y": {
+          "field": "state",
+          "type": "nominal",
+          "sort": {
+            "field": "net",
+            "order": "descending"
+          }
+        },
+        "x": {
+          "field": "net",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "state"
+        },
+        "color": {
+          "condition": {
+            "test": "datum.net >= 0",
+            "value": "#1b3a4b"
+          },
+          "value": "#7f1d1d"
+        }
+      }
+    }
+  ]
+}

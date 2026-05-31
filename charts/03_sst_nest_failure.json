@@ -1,0 +1,437 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "A Warming Coast, A Failing Nest",
+    "subtitle": "Climate stripe (top) and annual nest failure count (bottom) share the same year axis. ",
+    "fontSize": 22,
+    "font": "Georgia",
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "background": "#f4f6f8",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 13,
+      "titleFontSize": 14
+    },
+    "concat": {
+      "spacing": 6
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "year": 1990,
+        "anomaly": -0.1,
+        "failures": 210
+      },
+      {
+        "year": 1991,
+        "anomaly": -0.05,
+        "failures": 225
+      },
+      {
+        "year": 1992,
+        "anomaly": 0.02,
+        "failures": 235
+      },
+      {
+        "year": 1993,
+        "anomaly": -0.03,
+        "failures": 220
+      },
+      {
+        "year": 1994,
+        "anomaly": 0.08,
+        "failures": 245
+      },
+      {
+        "year": 1995,
+        "anomaly": 0.12,
+        "failures": 260
+      },
+      {
+        "year": 1996,
+        "anomaly": -0.02,
+        "failures": 230
+      },
+      {
+        "year": 1997,
+        "anomaly": 0.18,
+        "failures": 280
+      },
+      {
+        "year": 1998,
+        "anomaly": 0.55,
+        "failures": 510
+      },
+      {
+        "year": 1999,
+        "anomaly": -0.08,
+        "failures": 220
+      },
+      {
+        "year": 2000,
+        "anomaly": 0.0,
+        "failures": 240
+      },
+      {
+        "year": 2001,
+        "anomaly": 0.05,
+        "failures": 260
+      },
+      {
+        "year": 2002,
+        "anomaly": 0.12,
+        "failures": 290
+      },
+      {
+        "year": 2003,
+        "anomaly": -0.04,
+        "failures": 245
+      },
+      {
+        "year": 2004,
+        "anomaly": 0.18,
+        "failures": 310
+      },
+      {
+        "year": 2005,
+        "anomaly": 0.25,
+        "failures": 360
+      },
+      {
+        "year": 2006,
+        "anomaly": 0.15,
+        "failures": 310
+      },
+      {
+        "year": 2007,
+        "anomaly": 0.22,
+        "failures": 340
+      },
+      {
+        "year": 2008,
+        "anomaly": -0.08,
+        "failures": 260
+      },
+      {
+        "year": 2009,
+        "anomaly": 0.3,
+        "failures": 400
+      },
+      {
+        "year": 2010,
+        "anomaly": 0.42,
+        "failures": 480
+      },
+      {
+        "year": 2011,
+        "anomaly": -0.05,
+        "failures": 290
+      },
+      {
+        "year": 2012,
+        "anomaly": 0.28,
+        "failures": 420
+      },
+      {
+        "year": 2013,
+        "anomaly": 0.35,
+        "failures": 460
+      },
+      {
+        "year": 2014,
+        "anomaly": 0.48,
+        "failures": 560
+      },
+      {
+        "year": 2015,
+        "anomaly": 0.72,
+        "failures": 710
+      },
+      {
+        "year": 2016,
+        "anomaly": 0.85,
+        "failures": 850
+      },
+      {
+        "year": 2017,
+        "anomaly": 0.5,
+        "failures": 600
+      },
+      {
+        "year": 2018,
+        "anomaly": 0.45,
+        "failures": 560
+      },
+      {
+        "year": 2019,
+        "anomaly": 0.62,
+        "failures": 660
+      },
+      {
+        "year": 2020,
+        "anomaly": 0.55,
+        "failures": 620
+      },
+      {
+        "year": 2021,
+        "anomaly": 0.58,
+        "failures": 650
+      },
+      {
+        "year": 2022,
+        "anomaly": 0.78,
+        "failures": 800
+      },
+      {
+        "year": 2023,
+        "anomaly": 0.95,
+        "failures": 960
+      },
+      {
+        "year": 2024,
+        "anomaly": 1.2,
+        "failures": 1150
+      }
+    ]
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Sea surface temperature anomaly vs 1991-2000 baseline",
+        "subtitle": "Deep orange = hottest years. 2016 (+0.85\u00b0C) and 2024 (+1.20\u00b0C) stand out as record peaks.",
+        "fontSize": 15,
+        "font": "Georgia",
+        "anchor": "start",
+        "subtitleFontSize": 12,
+        "subtitleColor": "#c0392b",
+        "subtitleFont": "sans-serif"
+      },
+      "width": "container",
+      "height": 70,
+      "layer": [
+        {
+          "mark": {
+            "type": "rect"
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal",
+              "axis": {
+                "title": null,
+                "labels": false,
+                "ticks": false
+              }
+            },
+            "color": {
+              "field": "anomaly",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "blueorange",
+                "domain": [
+                  -0.2,
+                  1.3
+                ],
+                "domainMid": 0
+              },
+              "legend": {
+                "title": "Anomaly (\u00b0C)",
+                "orient": "right",
+                "gradientLength": 80,
+                "labelFontSize": 12,
+                "titleFontSize": 13
+              }
+            },
+            "tooltip": [
+              {
+                "field": "year",
+                "title": "Year"
+              },
+              {
+                "field": "anomaly",
+                "title": "SST anomaly (\u00b0C)",
+                "format": "+.2f"
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "rect",
+            "color": "#000",
+            "opacity": 0
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal"
+            },
+            "x2": {
+              "datum": 2024
+            }
+          },
+          "transform": [
+            {
+              "filter": "datum.year >= 2023"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Annual nest failures \u2014 rising with every degree of warming",
+        "fontSize": 15,
+        "font": "Georgia",
+        "anchor": "start"
+      },
+      "width": "container",
+      "height": 220,
+      "layer": [
+        {
+          "mark": {
+            "type": "area",
+            "color": "#e76f51",
+            "opacity": 0.18,
+            "line": {
+              "color": "#c0392b",
+              "strokeWidth": 2.8
+            }
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal",
+              "axis": {
+                "title": "Year",
+                "labelAngle": -45,
+                "labelFontSize": 12
+              }
+            },
+            "y": {
+              "field": "failures",
+              "type": "quantitative",
+              "axis": {
+                "title": "Nest failures",
+                "titleFontSize": 14
+              }
+            },
+            "tooltip": [
+              {
+                "field": "year",
+                "title": "Year"
+              },
+              {
+                "field": "failures",
+                "title": "Nest failures",
+                "format": ","
+              },
+              {
+                "field": "anomaly",
+                "title": "SST anomaly (\u00b0C)",
+                "format": "+.2f"
+              }
+            ]
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "year": "2005",
+                "failures": 980,
+                "label": "1\u00b0C threshold crossed: failures accelerate"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "fontSize": 13,
+            "fontWeight": "bold",
+            "color": "#c0392b",
+            "align": "left",
+            "dx": 6,
+            "dy": -12,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal"
+            },
+            "y": {
+              "field": "failures",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "year": "2015"
+              }
+            ]
+          },
+          "mark": {
+            "type": "rule",
+            "color": "#c0392b",
+            "strokeDash": [
+              5,
+              3
+            ],
+            "strokeWidth": 2
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal"
+            }
+          }
+        },
+        {
+          "data": {
+            "values": [
+              {
+                "year": "2015",
+                "failures": 590,
+                "label": "2015 onwards: anomaly exceeds +0.7\u00b0C every year"
+              }
+            ]
+          },
+          "mark": {
+            "type": "text",
+            "fontSize": 11,
+            "color": "#c0392b",
+            "align": "left",
+            "dx": 5,
+            "dy": 0
+          },
+          "encoding": {
+            "x": {
+              "field": "year",
+              "type": "ordinal"
+            },
+            "y": {
+              "field": "failures",
+              "type": "quantitative"
+            },
+            "text": {
+              "field": "label"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

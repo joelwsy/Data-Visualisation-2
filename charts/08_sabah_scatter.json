@@ -1,0 +1,289 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Sabah: More Landings, More Eggs Saved",
+    "subtitle": "Each point is one year (2008-2023). Path traces Sabah's annual conservation trajectory \u2014 upward-right = improving. Source: Sabah Parks, Dept. of Fisheries Malaysia",
+    "fontSize": 22,
+    "font": "Georgia",
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "width": "container",
+  "height": 400,
+  "background": "#f4f6f8",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "grid": true,
+      "gridOpacity": 0.15,
+      "labelFontSize": 13,
+      "titleFontSize": 14
+    }
+  },
+  "data": {
+    "values": [
+      {
+        "year": 2008,
+        "landings": 6800,
+        "hatchery_eggs": 420000
+      },
+      {
+        "year": 2009,
+        "landings": 7200,
+        "hatchery_eggs": 462000
+      },
+      {
+        "year": 2010,
+        "landings": 7800,
+        "hatchery_eggs": 511000
+      },
+      {
+        "year": 2011,
+        "landings": 8400,
+        "hatchery_eggs": 578000
+      },
+      {
+        "year": 2012,
+        "landings": 9100,
+        "hatchery_eggs": 642000
+      },
+      {
+        "year": 2013,
+        "landings": 9800,
+        "hatchery_eggs": 718000
+      },
+      {
+        "year": 2014,
+        "landings": 10500,
+        "hatchery_eggs": 782000
+      },
+      {
+        "year": 2015,
+        "landings": 11200,
+        "hatchery_eggs": 853000
+      },
+      {
+        "year": 2016,
+        "landings": 11800,
+        "hatchery_eggs": 921000
+      },
+      {
+        "year": 2017,
+        "landings": 12300,
+        "hatchery_eggs": 984000
+      },
+      {
+        "year": 2018,
+        "landings": 12900,
+        "hatchery_eggs": 1052000
+      },
+      {
+        "year": 2019,
+        "landings": 13400,
+        "hatchery_eggs": 1118000
+      },
+      {
+        "year": 2020,
+        "landings": 13800,
+        "hatchery_eggs": 1198000
+      },
+      {
+        "year": 2021,
+        "landings": 14100,
+        "hatchery_eggs": 1275000
+      },
+      {
+        "year": 2022,
+        "landings": 14500,
+        "hatchery_eggs": 1348000
+      },
+      {
+        "year": 2023,
+        "landings": 14800,
+        "hatchery_eggs": 1420000
+      }
+    ]
+  },
+  "params": [],
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "color": "#b0bec5",
+        "strokeWidth": 1.8
+      },
+      "encoding": {
+        "x": {
+          "field": "landings",
+          "type": "quantitative",
+          "axis": {
+            "title": "Female turtle landings per year",
+            "titleFontSize": 14,
+            "format": ",d",
+            "labelAngle": -30
+          },
+          "scale": {
+            "domain": [
+              6000,
+              16000
+            ]
+          }
+        },
+        "y": {
+          "field": "eggs_millions",
+          "type": "quantitative",
+          "axis": {
+            "title": "Eggs secured in hatcheries (millions)",
+            "titleFontSize": 14,
+            "format": ".1f",
+            "labelExpr": "datum.value + ' M'"
+          },
+          "scale": {
+            "domain": [
+              0.35,
+              1.5
+            ]
+          }
+        },
+        "order": {
+          "field": "year"
+        }
+      }
+    },
+    {
+      "mark": {
+        "type": "circle",
+        "filled": true,
+        "stroke": "white",
+        "strokeWidth": 1.5
+      },
+      "encoding": {
+        "x": {
+          "field": "landings",
+          "type": "quantitative",
+          "axis": {
+            "title": "Female turtle landings per year",
+            "titleFontSize": 14,
+            "format": ",d",
+            "labelAngle": -30
+          },
+          "scale": {
+            "domain": [
+              6000,
+              16000
+            ]
+          }
+        },
+        "y": {
+          "field": "eggs_millions",
+          "type": "quantitative",
+          "axis": {
+            "title": "Eggs secured in hatcheries (millions)",
+            "titleFontSize": 14,
+            "format": ".1f",
+            "labelExpr": "datum.value + ' M'"
+          },
+          "scale": {
+            "domain": [
+              0.35,
+              1.5
+            ]
+          }
+        },
+        "size": {
+          "value": 160
+        },
+        "color": {
+          "field": "year",
+          "type": "quantitative",
+          "scale": {
+            "scheme": "viridis"
+          },
+          "legend": {
+            "title": "Year",
+            "labelFontSize": 12,
+            "titleFontSize": 13,
+            "gradientLength": 120
+          }
+        },
+        "tooltip": [
+          {
+            "field": "year",
+            "title": "Year"
+          },
+          {
+            "field": "landings",
+            "title": "Female landings",
+            "format": ","
+          },
+          {
+            "field": "eggs_millions",
+            "title": "Eggs in hatcheries (millions)",
+            "format": ".2f"
+          }
+        ]
+      }
+    },
+    {
+      "transform": [
+        {
+          "filter": "datum.year == 2008 || datum.year == 2014 || datum.year == 2019 || datum.year == 2023"
+        }
+      ],
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
+        "color": "#1b3a4b",
+        "dx": 10,
+        "dy": -6
+      },
+      "encoding": {
+        "x": {
+          "field": "landings",
+          "type": "quantitative",
+          "axis": {
+            "title": "Female turtle landings per year",
+            "titleFontSize": 14,
+            "format": ",d",
+            "labelAngle": -30
+          },
+          "scale": {
+            "domain": [
+              6000,
+              16000
+            ]
+          }
+        },
+        "y": {
+          "field": "eggs_millions",
+          "type": "quantitative",
+          "axis": {
+            "title": "Eggs secured in hatcheries (millions)",
+            "titleFontSize": 14,
+            "format": ".1f",
+            "labelExpr": "datum.value + ' M'"
+          },
+          "scale": {
+            "domain": [
+              0.35,
+              1.5
+            ]
+          }
+        },
+        "text": {
+          "field": "year"
+        }
+      }
+    }
+  ],
+  "transform": [
+    {
+      "calculate": "datum.hatchery_eggs / 1000000",
+      "as": "eggs_millions"
+    }
+  ]
+}

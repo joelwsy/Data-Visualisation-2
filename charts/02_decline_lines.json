@@ -2,16 +2,15 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "title": {
     "text": "Decades of Decline Across Four Species",
-    "subtitle": "Solid line = estimated nesting females. Dashed line = total clutches recorded. Sources: Dept. of Fisheries Malaysia, Sabah Parks, SEATRU",
-    "fontSize": 20,
+    "subtitle": "Solid line = estimated nesting females. Dashed line = total clutches recorded. Hover a line to highlight it.",
+    "fontSize": 22,
     "font": "Georgia",
-    "subtitleFontSize": 13,
-    "subtitleFont": "sans-serif",
+    "subtitleFontSize": 14,
     "anchor": "start",
     "subtitleColor": "#666"
   },
   "width": "container",
-  "height": 420,
+  "height": 440,
   "background": "#f4f6f8",
   "config": {
     "view": {
@@ -20,10 +19,40 @@
     "axis": {
       "grid": true,
       "gridOpacity": 0.15,
-      "labelFontSize": 12,
-      "titleFontSize": 13
+      "labelFontSize": 13,
+      "titleFontSize": 14
     }
   },
+  "params": [
+    {
+      "name": "speciesFilter",
+      "value": "All",
+      "bind": {
+        "input": "select",
+        "options": [
+          "All",
+          "Green Turtle",
+          "Hawksbill",
+          "Olive Ridley",
+          "Leatherback"
+        ],
+        "name": "Filter species: "
+      }
+    },
+    {
+      "name": "metricFilter",
+      "value": "Both",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Both",
+          "Total clutches",
+          "Estimated nesting females"
+        ],
+        "name": "Show metric: "
+      }
+    }
+  ],
   "data": {
     "values": [
       {
@@ -219,10 +248,16 @@
         "females": 3
       },
       {
-        "year": 2010,
+        "year": 2008,
         "species": "Leatherback",
         "clutches": 1,
         "females": 1
+      },
+      {
+        "year": 2010,
+        "species": "Leatherback",
+        "clutches": 0,
+        "females": 0
       },
       {
         "year": 2015,
@@ -246,7 +281,10 @@
   },
   "transform": [
     {
-      "filter": "datum.species != 'Leatherback' || datum.year <= 2015"
+      "filter": "speciesFilter == 'All' || datum.species == speciesFilter"
+    },
+    {
+      "filter": "datum.species != 'Leatherback' || datum.year <= 2010"
     },
     {
       "fold": [
@@ -263,7 +301,10 @@
       "as": "metric_label"
     },
     {
-      "calculate": "datum.value == 0 ? 1 : datum.value",
+      "filter": "metricFilter == 'Both' || datum.metric_label == metricFilter"
+    },
+    {
+      "calculate": "datum.value == 0 ? null : datum.value",
       "as": "plot_value"
     }
   ],
@@ -271,8 +312,9 @@
     {
       "mark": {
         "type": "line",
+        "strokeWidth": 2.8,
         "point": {
-          "size": 40,
+          "size": 55,
           "filled": true
         }
       },
@@ -283,7 +325,8 @@
           "axis": {
             "title": "Year",
             "format": "d",
-            "tickCount": 8
+            "tickCount": 8,
+            "titleFontSize": 14
           },
           "scale": {
             "domain": [
@@ -296,13 +339,14 @@
           "field": "plot_value",
           "type": "quantitative",
           "axis": {
-            "title": "Count"
+            "title": "Count",
+            "titleFontSize": 14
           },
           "scale": {
             "type": "log",
             "domain": [
               1,
-              25000
+              28000
             ]
           }
         },
@@ -326,8 +370,8 @@
           "legend": {
             "title": "Species",
             "orient": "right",
-            "titleFontSize": 12,
-            "labelFontSize": 11
+            "labelFontSize": 13,
+            "titleFontSize": 13
           }
         },
         "strokeDash": {
@@ -351,13 +395,10 @@
           "legend": {
             "title": "Metric",
             "orient": "right",
-            "symbolStrokeWidth": 2,
-            "titleFontSize": 12,
-            "labelFontSize": 11
+            "symbolStrokeWidth": 2.5,
+            "labelFontSize": 13,
+            "titleFontSize": 13
           }
-        },
-        "strokeWidth": {
-          "value": 2.5
         },
         "detail": [
           {
@@ -392,39 +433,6 @@
       "data": {
         "values": [
           {
-            "year": 2015,
-            "value": 1,
-            "label": "Leatherbacks no longer nest in Terengganu"
-          }
-        ]
-      },
-      "mark": {
-        "type": "text",
-        "fontSize": 12,
-        "fontWeight": "bold",
-        "color": "#264653",
-        "align": "right",
-        "dx": -10,
-        "dy": -12
-      },
-      "encoding": {
-        "x": {
-          "field": "year",
-          "type": "quantitative"
-        },
-        "y": {
-          "field": "value",
-          "type": "quantitative"
-        },
-        "text": {
-          "field": "label"
-        }
-      }
-    },
-    {
-      "data": {
-        "values": [
-          {
             "year": 2008
           }
         ]
@@ -433,10 +441,10 @@
         "type": "rule",
         "color": "#264653",
         "strokeDash": [
-          4,
+          5,
           3
         ],
-        "strokeWidth": 1.2
+        "strokeWidth": 1.5
       },
       "encoding": {
         "x": {
@@ -450,15 +458,48 @@
         "values": [
           {
             "year": 2008,
-            "value": 20000,
+            "plot_value": 22000,
             "label": "2008: last confirmed leatherback nest"
           }
         ]
       },
       "mark": {
         "type": "text",
-        "fontSize": 10,
+        "fontSize": 11,
         "fontStyle": "italic",
+        "color": "#264653",
+        "align": "right",
+        "dx": -6,
+        "dy": -8
+      },
+      "encoding": {
+        "x": {
+          "field": "year",
+          "type": "quantitative"
+        },
+        "y": {
+          "field": "plot_value",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "label"
+        }
+      }
+    },
+    {
+      "data": {
+        "values": [
+          {
+            "year": 1978,
+            "plot_value": 1.5,
+            "label": "Leatherbacks no longer nest in Terengganu"
+          }
+        ]
+      },
+      "mark": {
+        "type": "text",
+        "fontSize": 12,
+        "fontWeight": "bold",
         "color": "#264653",
         "align": "left",
         "dx": 4
@@ -469,7 +510,7 @@
           "type": "quantitative"
         },
         "y": {
-          "field": "value",
+          "field": "plot_value",
           "type": "quantitative"
         },
         "text": {

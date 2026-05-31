@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tides of Change: Sea Turtle Conservation in Malaysia</title>
 
+  <!-- Google Fonts Loading: Maritime Theme (Nautical Typography Styling) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Source+Sans+3:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
 
   <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
   <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
@@ -14,293 +19,869 @@
   <script src="js/vega_lite_vis.js" defer></script>
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --green: #0077b6;
+      --hawksbill: #e9c46a;
+      --olive: #f4a261;
+      --leather: #264653;
+      --bg: #f2f4f7;
+      --surface: #ffffff;
+      --border: #dde2ea;
+      --text: #1e2a35;
+      --muted: #5a6a78;
+      --accent: #2a9d8f;
+      --accent-dark: #1b3a4b;
+      --radius: 10px;
+      --shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      --serif: 'Cinzel', Georgia, serif;
+      --sans: 'Plus Jakarta Sans', 'Segoe UI', sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
-      font-family: 'Source Sans 3', 'Segoe UI', sans-serif;
-      background: radial-gradient(circle at top, #f9fbfc 0%, #eef2f5 55%, #e8edf2 100%);
-      color: #27303a;
-      line-height: 1.9;
-      font-size: 19px;
-      letter-spacing: 0.1px;
+      font-family: var(--sans);
+      font-size: 18px;
+      line-height: 1.85;
+      color: var(--text);
+      background: var(--bg);
     }
 
-    /* ---- HEADER ---- */
-    .header {
+    body.cb-mode .chart-wrap {
+      filter: url(#cb-deuteranopia);
+    }
+
+    .site-header {
+      background: radial-gradient(circle at center top, rgba(42, 157, 143, 0.4) 0%, transparent 70%),
+        linear-gradient(160deg, var(--accent-dark) 20%, #0d1f28 100%);
+      color: #fff;
+      padding: 90px 40px 65px;
       text-align: center;
-      padding: 70px 30px 55px;
-      background: linear-gradient(140deg, #153444 10%, #2a9d8f 60%, #7cccb7 110%);
-      color: white;
-      box-shadow: 0 12px 30px rgba(21, 52, 68, 0.18);
+      position: relative;
+      overflow: hidden;
     }
-    .header h1 {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 3.35em;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      margin-bottom: 12px;
+
+    .header-stripe {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: linear-gradient(90deg, var(--green), var(--hawksbill), var(--olive), var(--leather));
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.25);
     }
-    .header p {
+
+    .site-header h1 {
+      font-family: var(--serif);
+      font-size: 3.8em;
+      font-weight: 800;
+      margin-bottom: 20px;
+      letter-spacing: 2px;
+      text-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+    }
+
+    .site-header .tagline {
       font-size: 1.25em;
-      opacity: 0.88;
+      font-weight: 300;
+      opacity: 0.95;
       max-width: 700px;
-      margin: 0 auto;
-      line-height: 1.6;
+      margin: 0 auto 40px;
+      line-height: 1.8;
+      letter-spacing: 0.5px;
+      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
     }
 
-    /* ---- MAIN CONTAINER ---- */
-    .container {
-      max-width: 1260px;
-      margin: 0 auto;
-      padding: 30px 40px;
-    }
-
-    /* ---- PILLAR TITLES ---- */
-    .pillar-title {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 2.2em;
-      font-weight: 700;
-      color: #18313f;
-      border-bottom: 3px solid rgba(42, 157, 143, 0.7);
-      padding-bottom: 10px;
-      margin: 60px 0 20px;
-    }
-
-    /* ---- NARRATIVE TEXT ---- */
-    .narrative {
-      font-size: 1.12em;
-      color: #3c4652;
-      margin-bottom: 28px;
-      max-width: 980px;
-      text-align: justify;
-    }
-
-    /* ---- SPECIES INTRO GRID ---- */
-    .species-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-      margin: 30px 0 40px;
-    }
-    .species-card {
-      background: white;
-      border-radius: 10px;
-      padding: 18px;
-      text-align: center;
-      box-shadow: 0 10px 24px rgba(17, 42, 66, 0.08);
-      border: 1px solid rgba(27, 58, 75, 0.05);
-      transition: transform 0.2s;
-    }
-    .species-card:hover { transform: translateY(-3px); }
-    .species-card img {
-      width: 100%;
-      height: 180px;
-      object-fit: cover;
-      border-radius: 8px;
-      margin-bottom: 12px;
-      background-color: #e9ecef;
-    }
-    .species-card h3 {
-      font-family: 'Lora', Georgia, serif;
-      font-size: 1.25em;
-      color: #1b3a4b;
-      margin-bottom: 4px;
-    }
-    .species-card p {
+    .cb-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-radius: 40px;
+      padding: 12px 28px;
+      cursor: pointer;
       font-size: 0.95em;
-      color: #5a6470;
+      font-weight: 500;
+      color: #fff;
+      user-select: none;
+      transition: all 0.3s ease;
+      font-family: var(--sans);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
     }
-    .species-meta {
-      margin-top: 8px;
-      text-align: left;
-      color: #556070;
-      font-size: 0.9em;
-      line-height: 1.5;
+
+    .cb-wrap:hover {
+      background: rgba(255, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
     }
-    .species-meta strong {
-      color: #18313f;
+
+    .cb-wrap input {
+      display: none;
+    }
+
+    .cb-pill {
+      width: 42px;
+      height: 24px;
+      background: rgba(255, 255, 255, 0.3);
+      border-radius: 12px;
+      position: relative;
+      transition: background 0.25s;
+      flex-shrink: 0;
+    }
+
+    .cb-pill::after {
+      content: '';
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 16px;
+      height: 16px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.25s;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    body.cb-mode .cb-pill {
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    body.cb-mode .cb-pill::after {
+      transform: translateX(18px);
+    }
+
+    /*  SPECIES BAR  */
+    .species-bar {
+      background: var(--accent-dark);
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 6px 32px;
+      padding: 15px 40px;
+    }
+
+    .sp {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 0.88em;
+    }
+
+    .sp .dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1.5px solid rgba(255, 255, 255, 0.4);
+      flex-shrink: 0;
+    }
+
+    .sp .com {
+      font-family: var(--sans);
       font-weight: 600;
     }
-    .species-scientific {
+
+    .sp .sci {
       font-style: italic;
-      color: #203645;
+      color: rgba(255, 255, 255, 0.62);
+      font-size: 0.92em;
     }
 
-    /* ---- CHART CONTAINERS ---- */
-    .chart-container {
-      width: 100%;
-      margin: 20px 0 55px;
-      background: white;
-      border-radius: 10px;
-      padding: 20px;
-      box-shadow: 0 12px 26px rgba(17, 42, 66, 0.08);
-      border: 1px solid rgba(27, 58, 75, 0.05);
+    .sp .iucn {
+      font-size: 0.75em;
+      font-weight: 700;
+      border-radius: 4px;
+      padding: 2px 8px;
+      background: rgba(255, 255, 255, 0.13);
+      color: rgba(255, 255, 255, 0.9);
+      white-space: nowrap;
     }
 
-    /* ---- SECTION DIVIDER ---- */
-    .divider {
-      width: 60px;
-      height: 3px;
-      background: #2a9d8f;
-      margin: 55px auto;
+    /*  NAV  */
+    .nav {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.07);
+    }
+
+    .nav a {
+      font-size: 0.88em;
+      font-weight: 600;
+      color: var(--muted);
+      text-decoration: none;
+      padding: 14px 18px;
+      border-bottom: 3px solid transparent;
+      transition: color 0.2s, border-color 0.2s;
+      white-space: nowrap;
+    }
+
+    .nav a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    .page {
+      max-width: 1340px;
+      margin: 0 auto;
+      padding: 0 48px 90px;
+    }
+
+    .chapter {
+      padding-top: 72px;
+    }
+
+    .ch-label {
+      font-size: 0.78em;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+
+    .chapter h2 {
+      font-family: var(--serif);
+      font-size: 2.3em;
+      font-weight: 700;
+      color: var(--accent-dark);
+      line-height: 1.2;
+      margin-bottom: 18px;
+      border-bottom: 3px solid var(--accent);
+      padding-bottom: 12px;
+    }
+
+    .narr {
+      font-size: 1.05em;
+      color: #3a4a58;
+      text-align: justify;
+      hyphens: auto;
+      margin-bottom: 26px;
+    }
+
+    .narr strong {
+      color: var(--accent-dark);
+      font-weight: 700;
+      background: rgba(42, 157, 143, 0.12);
+      border-bottom: 2px solid rgba(42, 157, 143, 0.4);
+      padding: 0 4px;
       border-radius: 2px;
     }
 
-    /* ---- FOOTER ---- */
+    /*  CONCLUSION CALLOUT  */
+    .conclusion-box {
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 40px 50px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      border-top: 6px solid var(--accent-dark);
+      margin-top: 60px;
+      text-align: center;
+    }
+
+    .conclusion-box h2 {
+      border-bottom: none;
+      margin-bottom: 20px;
+      padding-bottom: 0;
+    }
+
+    .conclusion-box .narr {
+      text-align: center;
+      margin-bottom: 0;
+      font-size: 1.15em;
+      line-height: 1.8;
+    }
+
+    .sp-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin: 32px 0 46px;
+    }
+
+    .sp-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border-top: 5px solid;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .sp-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 6px 22px rgba(0, 0, 0, 0.13);
+    }
+
+    .sp-card.green {
+      border-top-color: var(--green);
+    }
+
+    .sp-card.hawksbill {
+      border-top-color: var(--hawksbill);
+    }
+
+    .sp-card.olive {
+      border-top-color: var(--olive);
+    }
+
+    .sp-card.leather {
+      border-top-color: var(--leather);
+    }
+
+    .sp-card img {
+      width: 100%;
+      height: 185px;
+      object-fit: cover;
+      background: #e8edf2;
+      display: block;
+    }
+
+    .sp-body {
+      padding: 16px 18px 20px;
+    }
+
+    .sp-body h3 {
+      font-family: var(--serif);
+      font-size: 1.12em;
+      font-weight: 700;
+      color: var(--accent-dark);
+      margin-bottom: 3px;
+    }
+
+    .sp-body .sci {
+      font-style: italic;
+      font-size: 0.87em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      display: inline-block;
+      font-size: 0.74em;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 4px;
+      margin-bottom: 9px;
+    }
+
+    .en {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .cr {
+      background: #fee2e2;
+      color: #7f1d1d;
+    }
+
+    .vu {
+      background: #ede9fe;
+      color: #4c1d95;
+    }
+
+    .ex {
+      background: #374151;
+      color: #f9fafb;
+    }
+
+    .sp-body p {
+      font-size: 0.88em;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .sp-body .st {
+      font-size: 0.83em;
+      font-weight: 600;
+      color: var(--accent-dark);
+      margin-top: 6px;
+    }
+
+    .chart-wrap {
+      width: 100%;
+      background: var(--surface);
+      border-radius: var(--radius);
+      padding: 26px 22px 20px;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      margin: 22px 0 0;
+      overflow: hidden;
+    }
+
+    .chart-wrap>div {
+      width: 100% !important;
+    }
+
+    .chart-source {
+      font-size: 0.78em;
+      color: #8a96a2;
+      padding: 7px 4px 0;
+      margin-bottom: 44px;
+      font-style: italic;
+    }
+
+    .chart-source a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .chart-source a:hover {
+      text-decoration: underline;
+    }
+
+    /*  STYLED VEGA CONTROLS  */
+    .chart-wrap .vega-bind-group,
+    .chart-wrap form.vega-bindings {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      padding: 14px 4px 18px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 16px;
+      align-items: center;
+    }
+
+    .chart-wrap .vega-bind {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.84em;
+      font-family: var(--sans);
+      color: var(--muted);
+    }
+
+    .chart-wrap .vega-bind span {
+      font-weight: 600;
+      color: var(--accent-dark);
+      white-space: nowrap;
+    }
+
+    .chart-wrap .vega-bind select {
+      appearance: none;
+      -webkit-appearance: none;
+      background: var(--bg) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%235a6a78' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E") no-repeat right 10px center;
+      border: 1.5px solid var(--border);
+      border-radius: 20px;
+      padding: 5px 32px 5px 14px;
+      font-size: 0.9em;
+      font-family: var(--sans);
+      color: var(--accent-dark);
+      font-weight: 500;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      min-width: 130px;
+    }
+
+    .chart-wrap .vega-bind select:hover,
+    .chart-wrap .vega-bind select:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(42, 157, 143, 0.15);
+      outline: none;
+    }
+
+    .chart-wrap .vega-bind input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      height: 4px;
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--accent) var(--pct, 40%), var(--border) var(--pct, 40%));
+      outline: none;
+      cursor: pointer;
+      min-width: 130px;
+    }
+
+    .chart-wrap .vega-bind input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.15s;
+    }
+
+    .chart-wrap .vega-bind input[type="range"]::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    .chart-wrap .vega-bind input[type="range"]::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+    }
+
+    .divider {
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 25px auto;
+      opacity: 0.45;
+    }
+
     .footer {
       text-align: center;
-      padding: 35px 20px;
-      color: #7b8794;
-      font-size: 0.95em;
-      border-top: 1px solid #ddd;
-      margin-top: 50px;
-      background: #eef2f5;
+      padding: 38px 20px;
+      background: var(--accent-dark);
+      color: rgba(255, 255, 255, 0.72);
+      font-size: 0.88em;
+      line-height: 1.85;
     }
-    .footer p { margin: 4px 0; }
 
-    /* ---- RESPONSIVE ---- */
-    @media (max-width: 768px) {
-      .species-grid { grid-template-columns: repeat(2, 1fr); }
-      .container { padding: 20px 15px; }
-      .header h1 { font-size: 2.2em; }
+    .footer strong {
+      color: #fff;
+    }
+
+    .footer a {
+      color: #2a9d8f;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 920px) {
+      .sp-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .page {
+        padding: 0 20px 60px;
+      }
+
+      .site-header h1 {
+        font-size: 2.4em;
+      }
+
+      .chart-wrap .vega-bind-group,
+      .chart-wrap form.vega-bindings {
+        gap: 8px 12px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .sp-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .chapter h2 {
+        font-size: 1.75em;
+      }
     }
   </style>
 </head>
+
 <body>
 
-  <!-- ===== HEADER ===== -->
-  <div class="header">
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="cb-deuteranopia" color-interpolation-filters="linearRGB">
+        <feColorMatrix type="matrix" values="
+        0.625 0.375 0     0 0
+        0.700 0.300 0     0 0
+        0     0.300 0.700 0 0
+        0     0     0     1 0" />
+      </filter>
+    </defs>
+  </svg>
+
+  <!-- ── HEADER ── -->
+  <header class="site-header">
     <h1>Tides of Change</h1>
-    <p>Visualising sea turtle conservation in Malaysia: from nesting beaches to black markets, from warming seas to hatchery hope.</p>
-  </div>
-
-  <div class="container">
-
-    <!-- ===== PILLAR 1: INTRODUCTION & GEOGRAPHY ===== -->
-    <h2 class="pillar-title">Where Do They Nest?</h2>
-
-    <p class="narrative">
-      Malaysia's coastlines are home to four sea turtle species: the Green, Hawksbill, Olive Ridley, and the locally extinct Leatherback. Each faces a unique combination of threats, and each nests on different stretches of coast.
+    <p class="tagline">Visualising sea turtle conservation in Malaysia:
+      <br>
+      From nesting beaches to black markets,
+      <br>
+      From warming seas to hatchery hope.
     </p>
+    <label class="cb-wrap" title="Applies a deuteranopia simulation filter to all charts">
+      <input type="checkbox" id="cb-toggle" onchange="document.body.classList.toggle('cb-mode',this.checked)">
+      <span class="cb-pill"></span>
+      <span>Colourblind-friendly mode</span>
+    </label>
+    <div class="header-stripe"></div>
+  </header>
 
-    <!-- SPECIES PHOTO GRID (replace src with your images) -->
-    <div class="species-grid">
-      <div class="species-card">
-        <img src="images/green_turtle.jpg" alt="Green Turtle">
-        <h3>Green Turtle</h3>
-        <p>Endangered. 10,000 to 15,000 nests/year.</p>
-        <div class="species-meta">
-          <div><strong>Scientific:</strong> <span class="species-scientific">Chelonia mydas</span></div>
-          <div><strong>IUCN:</strong> Endangered</div>
-          <div><strong>Nesting states:</strong> Terengganu, Sabah, Sarawak</div>
-        </div>
-      </div>
-      <div class="species-card">
-        <img src="images/hawksbill_turtle.jpg" alt="Hawksbill Turtle">
-        <h3>Hawksbill Turtle</h3>
-        <p>Critically Endangered. 400 to 500 nests/year.</p>
-        <div class="species-meta">
-          <div><strong>Scientific:</strong> <span class="species-scientific">Eretmochelys imbricata</span></div>
-          <div><strong>IUCN:</strong> Critically Endangered</div>
-          <div><strong>Nesting states:</strong> Sabah, Terengganu, Melaka</div>
-        </div>
-      </div>
-      <div class="species-card">
-        <img src="images/olive_ridley_turtle.jpg" alt="Olive Ridley Turtle">
-        <h3>Olive Ridley Turtle</h3>
-        <p>Vulnerable. Under 100 nests/year.</p>
-        <div class="species-meta">
-          <div><strong>Scientific:</strong> <span class="species-scientific">Lepidochelys olivacea</span></div>
-          <div><strong>IUCN:</strong> Vulnerable</div>
-          <div><strong>Nesting states:</strong> Terengganu, Pahang</div>
-        </div>
-      </div>
-      <div class="species-card">
-        <img src="images/leatherback_turtle.jpg" alt="Leatherback Turtle">
-        <h3>Leatherback Turtle</h3>
-        <p>Locally extinct. 0 to 2 nests/year.</p>
-        <div class="species-meta">
-          <div><strong>Scientific:</strong> <span class="species-scientific">Dermochelys coriacea</span></div>
-          <div><strong>IUCN:</strong> Critically Endangered (globally)</div>
-          <div><strong>Nesting states:</strong> Terengganu (Rantau Abang)</div>
-        </div>
-      </div>
-    </div>
+  <!-- ── NAV ── -->
+  <nav class="nav">
+    <a href="#ch1">Where They Nest</a>
+    <a href="#ch2">Decades of Decline</a>
+    <a href="#ch3">A Warming Sea</a>
+    <a href="#ch4">Sex and Season</a>
+    <a href="#ch5">Survival Odds</a>
+    <a href="#ch9">The Tourism Collision</a>
+    <a href="#ch6">Black Markets</a>
+    <a href="#ch7">Legislation</a>
+    <a href="#ch8">The Sabah Story</a>
+    <a href="#ch10">The Melaka Comeback</a>
+    <a href="#conclusion">Conclusion</a>
+  </nav>
 
-    <p class="narrative">
-      Sabah's Turtle Islands Park records the highest nesting density in the country, while Terengganu's beaches carry the weight of historical significance. The map below plots every documented nesting beach alongside the mean sea surface temperature recorded at each site. Warmer colours signal locations where rising heat already threatens incubation.
-    </p>
-    <div class="chart-container" id="geo_map"></div>
+  <main class="page">
 
-    <div class="chart-container" id="decline_lines"></div>
+    <!-- ── CHAPTER 1 ── -->
+    <section class="chapter" id="ch1">
+      <p class="ch-label">Chapter 1</p>
+      <h2>Where Do They Nest?</h2>
+      <p class="narr"><strong>Sabah harbors over 70%</strong> of Malaysia's remaining turtle nesting activity, serving
+        as the fragile beating heart of their survival. Yet, this final stronghold sits precariously on a maritime
+        boundary, where <strong>a single protected archipelago</strong> stands between these ancient mariners and
+        ruthless open-water exploitation.</p>
+
+      <div class="sp-grid">
+        <div class="sp-card green">
+          <img src="images/green_turtle.jpg" alt="Green Turtle">
+          <div class="sp-body">
+            <h3>Green Turtle</h3>
+            <p class="sci">Chelonia mydas</p>
+            <span class="badge en">Endangered (IUCN)</span>
+            <p>Malaysia's most numerous species. Stable and increasing in Sabah and Terengganu.</p>
+            <p class="st">Primary nesting: Sabah, Terengganu, Sarawak</p>
+          </div>
+        </div>
+        <div class="sp-card hawksbill">
+          <img src="images/hawksbill_turtle.jpg" alt="Hawksbill Turtle">
+          <div class="sp-body">
+            <h3>Hawksbill Turtle</h3>
+            <p class="sci">Eretmochelys imbricata</p>
+            <span class="badge cr">Critically Endangered (IUCN)</span>
+            <p>Hunted for their shells. Fewer than 200 clutches per year in Sabah; Melaka reached ~1,000 in 2022.</p>
+            <p class="st">Primary nesting: Melaka, Terengganu, Pahang</p>
+          </div>
+        </div>
+        <div class="sp-card olive">
+          <img src="images/olive_ridley_turtle.jpg" alt="Olive Ridley Turtle">
+          <div class="sp-body">
+            <h3>Olive Ridley Turtle</h3>
+            <p class="sci">Lepidochelys olivacea</p>
+            <span class="badge vu">Vulnerable (IUCN)</span>
+            <p>Fewer than 5 clutches recorded per year in Malaysia. Once common along Perak and Penang coastlines.</p>
+            <p class="st">Primary nesting: Perak, Penang</p>
+          </div>
+        </div>
+        <div class="sp-card leather">
+          <img src="images/leatherback_turtle.jpg" alt="Leatherback Turtle">
+          <div class="sp-body">
+            <h3>Leatherback Turtle</h3>
+            <p class="sci">Dermochelys coriacea</p>
+            <span class="badge ex">Locally Extinct</span>
+            <p>Over 10,000 nests per year at Rantau Abang in the 1960s. No confirmed nesting since 2008.</p>
+            <p class="st">Historic: Terengganu (Rantau Abang)</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="chart-wrap" id="proportional_map"></div>
+      <p class="chart-source">Sources: <a href="https://data.gov.my" target="_blank"
+          rel="noopener noreferrer">Department of Fisheries Malaysia</a> (nesting records 1980-2023); <a
+          href="http://www.sabahparks.org.my" target="_blank" rel="noopener noreferrer">Sabah Parks</a> (Turtle Islands
+        Park annual reports); <a href="https://seatru.umt.edu.my" target="_blank" rel="noopener noreferrer">SEATRU,
+          Universiti Malaysia Terengganu</a>.</p>
+    </section>
 
     <div class="divider"></div>
 
-    <!-- ===== PILLAR 2: PRIMARY THREATS ===== -->
-    <h2 class="pillar-title">The Threats They Face</h2>
-
-    <p class="narrative">
-      Commercial egg poaching remains the single largest direct threat to Malaysian sea turtles. Between 2015 and 2019, over 75,000 turtle eggs were confiscated in Malaysia alone, and that figure captures only what enforcement agencies actually intercepted. The true scale of poaching is far larger.
-    </p>
-    <div class="chart-container" id="isotype_seizures"></div>
-
-    <p class="narrative">
-      As conservation efforts grow and more turtles nest on protected beaches, a troubling paradox emerges: the estimated volume of eggs lost to poaching rises in tandem. More nesting activity draws more attention from illegal collectors.
-    </p>
-    <div class="chart-container" id="landings_seizures"></div>
-
-    <p class="narrative">
-      Different species are hunted for different products. Green turtles are overwhelmingly targeted for their eggs, consumed domestically and exported to Vietnam. Hawksbill turtles, by contrast, are prized for their shells, the raw material for the luxury bekko trade in Japan and East Asia.
-    </p>
-    <div class="chart-container" id="faceted_threats"></div>
+    <!-- ── CHAPTER 2 ── -->
+    <section class="chapter" id="ch2">
+      <p class="ch-label">Chapter 2</p>
+      <h2>Decades of Decline</h2>
+      <p class="narr">The Olive Ridley has quietly faded from our shores, <strong>plummeting from hundreds of clutches
+          to a mere whisper of fewer than five a year</strong>. Unless we rewrite this tragic trajectory, they will soon
+        <strong>follow the Leatherback into the shadows of local extinction</strong>, lost to our children forever.
+      </p>
+      <div class="chart-wrap" id="decline_lines"></div>
+      <p class="chart-source">Sources: <a href="https://www.dof.gov.my" target="_blank"
+          rel="noopener noreferrer">Department of Fisheries Malaysia</a>; <a href="http://www.sabahparks.org.my"
+          target="_blank" rel="noopener noreferrer">Sabah Parks</a> (Turtle Islands Park); <a
+          href="https://seatru.umt.edu.my" target="_blank" rel="noopener noreferrer">SEATRU (Chagar Hutang Hawksbill
+          monitoring, 1993-2023)</a>. Note: Leatherback data ends at 2010, with no confirmed nests thereafter.</p>
+    </section>
 
     <div class="divider"></div>
 
-    <!-- ===== PILLAR 3: BIOLOGICAL OUTCOMES ===== -->
-    <h2 class="pillar-title">What the Data Reveals</h2>
-
-    <p class="narrative">
-      The Leatherback turtle's story at Rantau Abang is the starkest warning. From over 10,000 nests per year in the 1950s, the population collapsed to functional extinction. Protection came too late.
-    </p>
-    <div class="chart-container" id="leatherback_collapse"></div>
-
-    <p class="narrative">
-      Sea turtles nest seasonally, with Green turtles peaking between June and September during the southwest monsoon. The heatmap below reveals how each species' nesting window aligns with the warmest months, precisely when thermal stress on developing embryos is highest.
-    </p>
-    <div class="chart-container" id="heatmap_season"></div>
+    <!-- ── CHAPTER 3 ── -->
+    <section class="chapter" id="ch3">
+      <p class="ch-label">Chapter 3</p>
+      <h2>A Warming Coast, A Failing Nest</h2>
+      <p class="narr">The tragic failure of these nests is not a random act of nature, but a <strong>direct consequence
+          of our warming oceans</strong>. Searing temperature anomalies track perfectly with mass reproductive loss,
+        transforming once-safe sandy cradles into <strong>silent graves for thousands of unborn hatchlings</strong>.</p>
+      <div class="chart-wrap" id="sst_nest_failure"></div>
+      <p class="chart-source">Sources: <a href="https://www.ncei.noaa.gov/products/extended-reconstructed-sst"
+          target="_blank" rel="noopener noreferrer">NOAA Extended Reconstructed Sea Surface Temperature (ERSST v5)</a>,
+        South China Sea regional average; <a href="https://data.gov.my" target="_blank"
+          rel="noopener noreferrer">Department of Fisheries Malaysia</a> (nest failure records). Baseline period:
+        1991-2000.</p>
+    </section>
 
     <div class="divider"></div>
 
-    <!-- ===== PILLAR 4: CONSERVATION EFFORTS ===== -->
-    <h2 class="pillar-title">Is Conservation Working?</h2>
+    <!-- ── CHAPTER 4 ── -->
+    <section class="chapter" id="ch4">
+      <p class="ch-label">Chapter 4</p>
+      <h2>Nesting Season Meets the Warmest Months</h2>
+      <p class="narr">Because heat dictates a hatchling's sex, our boiling coastlines are <strong>silently erasing male
+          turtles from the equation</strong>. This invisible demographic collapse means a population of only females
+        will soon swim empty oceans, <strong>cementing their doom within just two generations</strong> if the sands
+        continue to burn.</p>
+      <div class="chart-wrap" id="sex_season_sst"></div>
+      <p class="chart-source">Sources: <a href="https://seatru.umt.edu.my" target="_blank"
+          rel="noopener noreferrer">SEATRU</a> (monthly nesting distributions, Chagar Hutang); <a
+          href="https://coralreefwatch.noaa.gov" target="_blank" rel="noopener noreferrer">NOAA Coral Reef Watch</a>
+        (monthly coastal SST averages for South China Sea). Sex ratio data based on published TSD studies for Malaysian
+        green and hawksbill populations.</p>
+    </section>
 
-    <p class="narrative">
-      The most powerful evidence comes from state-level legislation. In Sabah and Sarawak, where commercial egg trade is strictly banned, nearly all eggs reach protected hatcheries. In states with fragmented enforcement, the majority are still sold in open markets.
-    </p>
-    <div class="chart-container" id="slope_legislation"></div>
+    <div class="divider"></div>
 
-    <p class="narrative">
-      The contrast sharpens when we look at where eggs ultimately end up. States with total bans show green-dominant bars, meaning eggs going to hatcheries. States with legal ambiguity show red, meaning eggs entering commercial channels.
-    </p>
-    <div class="chart-container" id="stacked_disposition"></div>
+    <!-- ── CHAPTER 5 ── -->
+    <section class="chapter" id="ch5">
+      <p class="ch-label">Chapter 5</p>
+      <h2>The Odds of Reaching Adulthood</h2>
+      <p class="narr">Even under perfect conditions, <strong>only one in a hundred hatchlings survives</strong> the
+        perilous journey to adulthood. Now, the cruel additions of relentless poaching, suffocating fishing nets, and
+        choking plastics are <strong>crushing that razor-thin sliver of hope</strong>, pushing these resilient survivors
+        to the brink of annihilation.</p>
+      <div class="chart-wrap" id="waffle_survival"></div>
+      <p class="chart-source">Sources: Spotila (2004) Sea Turtles: A Complete Guide; Lutcavage &amp; Lutz (1997)
+        Physiological ecology of sea turtles; <a href="https://www.iucnredlist.org" target="_blank"
+          rel="noopener noreferrer">IUCN Marine Turtle Specialist Group</a> survival rate estimates. Proportions are
+        approximate and represent order-of-magnitude consensus across species.</p>
+    </section>
 
-    <p class="narrative">
-      In Sabah's Turtle Islands Park, the data traces a clear upward trajectory: more female landings are translating into more eggs secured in hatcheries year after year. The connected path below shows this steady improvement from 2008 to 2023.
-    </p>
-    <div class="chart-container" id="connected_scatter"></div>
+    <div class="divider"></div>
 
-    <p class="narrative">
-      Trafficking does not discriminate by age. Both juvenile and adult turtles are seized in alarming numbers, compounding the generational damage to already fragile populations.
-    </p>
-    <div class="chart-container" id="bullet_demographics"></div>
+    <!-- ── CHAPTER 9 (TOURISM) ── -->
+    <section class="chapter" id="ch9">
+      <p class="ch-label">Chapter 6</p>
+      <h2>The Tourism Collision</h2>
+      <p class="narr">Coastal tourism drives immense economic value, but it fundamentally conflicts with the need for
+        quiet, dark nesting beaches. This faceted comparison normalises both metrics to a 100-point index, revealing a
+        stark reality: <strong>states that dominate domestic tourism severely lack nesting turtles</strong>.</p>
+      <div class="chart-wrap" id="tourism_collision"></div>
+      <p class="chart-source">Sources: <a href="https://open.dosm.gov.my/explore" target="_blank"
+          rel="noopener noreferrer">Department of Statistics Malaysia (DOSM)</a> (Domestic tourism arrivals); <a
+          href="https://data.gov.my" target="_blank" rel="noopener noreferrer">Department of Fisheries Malaysia</a>
+        (Nesting counts).</p>
+    </section>
 
-  </div>
+    <div class="divider"></div>
 
-  <!-- ===== FOOTER ===== -->
-  <div class="footer">
-    <p>FIT2179 Data Visualisation | Assignment 2 | Joel Wong</p>
-    <p>Data sources: Department of Fisheries Malaysia, TRAFFIC/CITES Trade Database, NOAA ERSST</p>
-  </div>
+    <!-- ── CHAPTER 6 ── -->
+    <section class="chapter" id="ch6">
+      <p class="ch-label">Chapter 7</p>
+      <h2>Each Species Faces a Different Black Market</h2>
+      <p class="narr">The critically endangered Hawksbill faces a uniquely merciless black market, <strong>ruthlessly
+          hunted for both its stolen eggs and its beautiful shell</strong>. This double bounty places a horrific
+        commercial target on their backs, driving greedy syndicates to <strong>plunder them faster than they can ever
+          recover</strong>.</p>
+      <div class="chart-wrap" id="isotype_blackmarket"></div>
+      <p class="chart-source">Sources: <a href="https://www.traffic.org" target="_blank"
+          rel="noopener noreferrer">TRAFFIC Wildlife Trade Database</a>; <a href="https://trade.cites.org"
+          target="_blank" rel="noopener noreferrer">CITES Trade Database</a>. Seizure records cover 2015-2019. Data
+        reflects confiscations by Malaysian enforcement agencies only, cross-border trafficking through Indonesia and
+        Vietnam is not fully captured.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CHAPTER 7 ── -->
+    <section class="chapter" id="ch7">
+      <p class="ch-label">Chapter 8</p>
+      <h2>Strict Egg Bans Protect More Turtles</h2>
+      <p class="narr">The survival of a species should not depend on a postcode, yet the <strong>stark divide in state
+          laws dictates exactly that</strong>. While Sabah's strict bans shield thousands of fragile eggs, the legal
+        ambiguities in states like Penang condemn them to the marketplace, proving that <strong>political hesitation
+          costs countless lives</strong>.</p>
+      <div class="chart-wrap" id="state_legislation"></div>
+      <p class="chart-source">Sources: <a href="https://data.gov.my" target="_blank"
+          rel="noopener noreferrer">Department of Fisheries Malaysia</a> (state-level egg disposition records); <a
+          href="https://www.wwf.org.my" target="_blank" rel="noopener noreferrer">WWF-Malaysia</a> (state legislation
+        review). Note: egg sale remains legally permitted in some Peninsular states, a regulatory gap that conservation
+        bodies have long identified as a critical vulnerability.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CHAPTER 8 ── -->
+    <section class="chapter" id="ch8">
+      <p class="ch-label">Chapter 9</p>
+      <h2>When Conservation Works: The Sabah Story</h2>
+      <p class="narr">Sabah's Turtle Islands prove that <strong>dedicated, fierce protection can literally bring a
+          species back from the edge</strong>. But this upward trajectory of hope is incredibly fragile; <strong>one
+          lapse in funding or a single season of weakened political will</strong> could instantly undo decades of
+        miraculous recovery.</p>
+      <div class="chart-wrap" id="sabah_scatter"></div>
+      <p class="chart-source">Sources: <a href="http://www.sabahparks.org.my" target="_blank"
+          rel="noopener noreferrer">Sabah Parks</a> (Turtle Islands Park annual landing and hatchery records,
+        2008-2023); <a href="https://www.dof.gov.my" target="_blank" rel="noopener noreferrer">Department of Fisheries
+          Malaysia</a>. Hatchery egg figures represent eggs physically collected and transferred to the park's managed
+        incubation facility.</p>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- ── CHAPTER 10 (MELAKA COMEBACK) ── -->
+    <section class="chapter" id="ch10">
+      <p class="ch-label">Chapter 10</p>
+      <h2>The Melaka Hawksbill Comeback</h2>
+      <p class="narr">While national populations plummet, isolated bright spots prove that localized grassroots action
+        works. By actively patrolling heavily developed coastlines, conservationists in Melaka have <strong>more than
+          doubled their Hawksbill nests in just seven years</strong>, defying the downward national trend.</p>
+      <div class="chart-wrap" id="melaka_slopegraph"></div>
+      <p class="chart-source">Sources: Salim et al. (2021) Sea Turtle Nesting in Melaka; <a
+          href="https://www.wwf.org.my" target="_blank" rel="noopener noreferrer">WWF-Malaysia Hawksbill Conservation
+          Updates</a>.</p>
+    </section>
+
+    <!-- ── CONCLUSION ── -->
+    <section class="conclusion-box" id="conclusion">
+      <h2>A Choice for the Future</h2>
+      <p class="narr">The data tells a clear, unflinching story. We have watched historical strongholds collapse and
+        warming seas silently erase future generations. Yet, as the shores of Sabah and the sands of Melaka vividly
+        demonstrate, <strong>human intervention can reverse the tide</strong>. The survival of Malaysia's sea turtles is
+        no longer up to nature alone. It is a deliberate, measurable choice we must make right now.</p>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <p><strong>Tides of Change: Visualising Sea Turtle Conservation in Malaysia</strong></p>
+    <p>FIT2179 Data Visualisation | Assignment 2 | Joel Wong | Monash University Malaysia</p>
+    <p>Primary data: <a href="https://www.dof.gov.my" target="_blank" rel="noopener noreferrer">DOF Malaysia</a>
+      &nbsp;|&nbsp; <a href="http://www.sabahparks.org.my" target="_blank" rel="noopener noreferrer">Sabah Parks</a>
+      &nbsp;|&nbsp; <a href="https://seatru.umt.edu.my" target="_blank" rel="noopener noreferrer">SEATRU (UMT)</a>
+      &nbsp;|&nbsp; <a href="https://www.ncei.noaa.gov" target="_blank" rel="noopener noreferrer">NOAA ERSST</a>
+      &nbsp;|&nbsp; <a href="https://www.iucnredlist.org" target="_blank" rel="noopener noreferrer">IUCN Red List</a>
+      &nbsp;|&nbsp; <a href="https://www.traffic.org" target="_blank" rel="noopener noreferrer">TRAFFIC</a> / <a
+        href="https://trade.cites.org" target="_blank" rel="noopener noreferrer">CITES Database</a></p>
+  </footer>
 
 </body>
+
 </html>

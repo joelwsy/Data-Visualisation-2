@@ -1,0 +1,597 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Nesting Season Meets the Warmest Months",
+    "subtitle": [
+      "Monthly nesting intensity (heatmap) overlaid with mean sea surface temperature (line). Warmer months = more female-biased hatchlings.",
+      "Sea turtles exhibit temperature-dependent sex determination: sand above 29\u00b0C produces predominantly females."
+    ],
+    "fontSize": 22,
+    "font": "Georgia",
+    "subtitleFontSize": 14,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "background": "#f4f6f8",
+  "config": {
+    "view": {
+      "stroke": null
+    },
+    "axis": {
+      "labelFontSize": 13,
+      "titleFontSize": 14
+    }
+  },
+  "vconcat": [
+    {
+      "title": {
+        "text": "Monthly nesting intensity by species (background) + mean SST (line)",
+        "fontSize": 15,
+        "font": "Georgia",
+        "anchor": "start"
+      },
+      "width": "container",
+      "height": 260,
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "month": "Jan",
+                "m": 1,
+                "species": "Green Turtle",
+                "nests": 120
+              },
+              {
+                "month": "Feb",
+                "m": 2,
+                "species": "Green Turtle",
+                "nests": 180
+              },
+              {
+                "month": "Mar",
+                "m": 3,
+                "species": "Green Turtle",
+                "nests": 310
+              },
+              {
+                "month": "Apr",
+                "m": 4,
+                "species": "Green Turtle",
+                "nests": 520
+              },
+              {
+                "month": "May",
+                "m": 5,
+                "species": "Green Turtle",
+                "nests": 780
+              },
+              {
+                "month": "Jun",
+                "m": 6,
+                "species": "Green Turtle",
+                "nests": 1350
+              },
+              {
+                "month": "Jul",
+                "m": 7,
+                "species": "Green Turtle",
+                "nests": 1820
+              },
+              {
+                "month": "Aug",
+                "m": 8,
+                "species": "Green Turtle",
+                "nests": 1950
+              },
+              {
+                "month": "Sep",
+                "m": 9,
+                "species": "Green Turtle",
+                "nests": 1620
+              },
+              {
+                "month": "Oct",
+                "m": 10,
+                "species": "Green Turtle",
+                "nests": 1080
+              },
+              {
+                "month": "Nov",
+                "m": 11,
+                "species": "Green Turtle",
+                "nests": 450
+              },
+              {
+                "month": "Dec",
+                "m": 12,
+                "species": "Green Turtle",
+                "nests": 210
+              },
+              {
+                "month": "Jan",
+                "m": 1,
+                "species": "Hawksbill",
+                "nests": 65
+              },
+              {
+                "month": "Feb",
+                "m": 2,
+                "species": "Hawksbill",
+                "nests": 110
+              },
+              {
+                "month": "Mar",
+                "m": 3,
+                "species": "Hawksbill",
+                "nests": 210
+              },
+              {
+                "month": "Apr",
+                "m": 4,
+                "species": "Hawksbill",
+                "nests": 340
+              },
+              {
+                "month": "May",
+                "m": 5,
+                "species": "Hawksbill",
+                "nests": 420
+              },
+              {
+                "month": "Jun",
+                "m": 6,
+                "species": "Hawksbill",
+                "nests": 380
+              },
+              {
+                "month": "Jul",
+                "m": 7,
+                "species": "Hawksbill",
+                "nests": 290
+              },
+              {
+                "month": "Aug",
+                "m": 8,
+                "species": "Hawksbill",
+                "nests": 200
+              },
+              {
+                "month": "Sep",
+                "m": 9,
+                "species": "Hawksbill",
+                "nests": 160
+              },
+              {
+                "month": "Oct",
+                "m": 10,
+                "species": "Hawksbill",
+                "nests": 120
+              },
+              {
+                "month": "Nov",
+                "m": 11,
+                "species": "Hawksbill",
+                "nests": 80
+              },
+              {
+                "month": "Dec",
+                "m": 12,
+                "species": "Hawksbill",
+                "nests": 50
+              },
+              {
+                "month": "Jan",
+                "m": 1,
+                "species": "Olive Ridley",
+                "nests": 3
+              },
+              {
+                "month": "Feb",
+                "m": 2,
+                "species": "Olive Ridley",
+                "nests": 5
+              },
+              {
+                "month": "Mar",
+                "m": 3,
+                "species": "Olive Ridley",
+                "nests": 8
+              },
+              {
+                "month": "Apr",
+                "m": 4,
+                "species": "Olive Ridley",
+                "nests": 12
+              },
+              {
+                "month": "May",
+                "m": 5,
+                "species": "Olive Ridley",
+                "nests": 10
+              },
+              {
+                "month": "Jun",
+                "m": 6,
+                "species": "Olive Ridley",
+                "nests": 7
+              },
+              {
+                "month": "Jul",
+                "m": 7,
+                "species": "Olive Ridley",
+                "nests": 5
+              },
+              {
+                "month": "Aug",
+                "m": 8,
+                "species": "Olive Ridley",
+                "nests": 4
+              },
+              {
+                "month": "Sep",
+                "m": 9,
+                "species": "Olive Ridley",
+                "nests": 3
+              },
+              {
+                "month": "Oct",
+                "m": 10,
+                "species": "Olive Ridley",
+                "nests": 2
+              },
+              {
+                "month": "Nov",
+                "m": 11,
+                "species": "Olive Ridley",
+                "nests": 1
+              },
+              {
+                "month": "Dec",
+                "m": 12,
+                "species": "Olive Ridley",
+                "nests": 2
+              }
+            ]
+          },
+          "mark": {
+            "type": "rect",
+            "stroke": "white",
+            "strokeWidth": 1.2
+          },
+          "encoding": {
+            "x": {
+              "field": "month",
+              "type": "ordinal",
+              "sort": [
+                "Jan",
+                "Feb",
+                "Mar",
+                "Apr",
+                "May",
+                "Jun",
+                "Jul",
+                "Aug",
+                "Sep",
+                "Oct",
+                "Nov",
+                "Dec"
+              ],
+              "axis": {
+                "title": null,
+                "labelFontSize": 13
+              }
+            },
+            "y": {
+              "field": "species",
+              "type": "nominal",
+              "sort": [
+                "Green Turtle",
+                "Hawksbill",
+                "Olive Ridley"
+              ],
+              "axis": {
+                "title": null,
+                "labelFontSize": 13
+              }
+            },
+            "color": {
+              "field": "nests",
+              "type": "quantitative",
+              "scale": {
+                "scheme": "greens",
+                "domain": [
+                  0,
+                  2000
+                ]
+              },
+              "legend": {
+                "title": "Monthly nests",
+                "orient": "right",
+                "labelFontSize": 12,
+                "titleFontSize": 13,
+                "gradientLength": 100
+              }
+            },
+            "tooltip": [
+              {
+                "field": "species",
+                "title": "Species"
+              },
+              {
+                "field": "month",
+                "title": "Month"
+              },
+              {
+                "field": "nests",
+                "title": "Monthly nests",
+                "format": ","
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "text": "Mean monthly SST (\u00b0C) \u2014 peak heat coincides with peak nesting",
+        "fontSize": 15,
+        "font": "Georgia",
+        "anchor": "start"
+      },
+      "width": "container",
+      "height": 180,
+      "layer": [
+        {
+          "data": {
+            "values": [
+              {
+                "month": "Jan",
+                "m": 1,
+                "sst": 28.2,
+                "female_pct": 20
+              },
+              {
+                "month": "Feb",
+                "m": 2,
+                "sst": 28.5,
+                "female_pct": 30
+              },
+              {
+                "month": "Mar",
+                "m": 3,
+                "sst": 29.0,
+                "female_pct": 50
+              },
+              {
+                "month": "Apr",
+                "m": 4,
+                "sst": 29.6,
+                "female_pct": 78
+              },
+              {
+                "month": "May",
+                "m": 5,
+                "sst": 30.1,
+                "female_pct": 90
+              },
+              {
+                "month": "Jun",
+                "m": 6,
+                "sst": 30.4,
+                "female_pct": 95
+              },
+              {
+                "month": "Jul",
+                "m": 7,
+                "sst": 30.2,
+                "female_pct": 92
+              },
+              {
+                "month": "Aug",
+                "m": 8,
+                "sst": 29.9,
+                "female_pct": 87
+              },
+              {
+                "month": "Sep",
+                "m": 9,
+                "sst": 29.5,
+                "female_pct": 76
+              },
+              {
+                "month": "Oct",
+                "m": 10,
+                "sst": 29.2,
+                "female_pct": 62
+              },
+              {
+                "month": "Nov",
+                "m": 11,
+                "sst": 28.8,
+                "female_pct": 40
+              },
+              {
+                "month": "Dec",
+                "m": 12,
+                "sst": 28.4,
+                "female_pct": 25
+              }
+            ]
+          },
+          "layer": [
+            {
+              "mark": {
+                "type": "line",
+                "color": "#e76f51",
+                "strokeWidth": 3.5
+              },
+              "encoding": {
+                "x": {
+                  "field": "month",
+                  "type": "ordinal",
+                  "sort": [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec"
+                  ],
+                  "axis": {
+                    "title": "Month",
+                    "labelFontSize": 13
+                  }
+                },
+                "y": {
+                  "field": "sst",
+                  "type": "quantitative",
+                  "scale": {
+                    "zero": false,
+                    "domain": [
+                      27.5,
+                      31.0
+                    ]
+                  },
+                  "axis": {
+                    "title": "Mean SST (\u00b0C)",
+                    "titleFontSize": 14
+                  }
+                },
+                "tooltip": [
+                  {
+                    "field": "month",
+                    "title": "Month"
+                  },
+                  {
+                    "field": "sst",
+                    "title": "Mean SST (\u00b0C)"
+                  },
+                  {
+                    "field": "female_pct",
+                    "title": "Est. female hatchlings (%)"
+                  }
+                ]
+              }
+            },
+            {
+              "mark": {
+                "type": "circle",
+                "filled": true,
+                "size": 70,
+                "color": "#e76f51"
+              },
+              "encoding": {
+                "x": {
+                  "field": "month",
+                  "type": "ordinal",
+                  "sort": [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec"
+                  ]
+                },
+                "y": {
+                  "field": "sst",
+                  "type": "quantitative",
+                  "scale": {
+                    "zero": false,
+                    "domain": [
+                      27.5,
+                      31.0
+                    ]
+                  }
+                }
+              }
+            },
+            {
+              "mark": {
+                "type": "rule",
+                "color": "#c0392b",
+                "strokeDash": [
+                  5,
+                  3
+                ],
+                "strokeWidth": 1.8
+              },
+              "encoding": {
+                "y": {
+                  "datum": 29.0
+                }
+              }
+            },
+            {
+              "data": {
+                "values": [
+                  {
+                    "month": "Feb",
+                    "sst": 29.1,
+                    "label": "29\u00b0C pivotal: hatchlings shift to >50% female above this line"
+                  }
+                ]
+              },
+              "mark": {
+                "type": "text",
+                "fontSize": 12,
+                "fontWeight": "bold",
+                "color": "#c0392b",
+                "align": "left",
+                "dx": 4,
+                "dy": -8
+              },
+              "encoding": {
+                "x": {
+                  "field": "month",
+                  "type": "ordinal",
+                  "sort": [
+                    "Jan",
+                    "Feb",
+                    "Mar",
+                    "Apr",
+                    "May",
+                    "Jun",
+                    "Jul",
+                    "Aug",
+                    "Sep",
+                    "Oct",
+                    "Nov",
+                    "Dec"
+                  ]
+                },
+                "y": {
+                  "field": "sst",
+                  "type": "quantitative",
+                  "scale": {
+                    "zero": false,
+                    "domain": [
+                      27.5,
+                      31.0
+                    ]
+                  }
+                },
+                "text": {
+                  "field": "label"
+                }
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

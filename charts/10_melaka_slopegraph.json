@@ -1,0 +1,124 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "The Melaka Hawksbill Comeback",
+    "subtitle": "Tracking annual Hawksbill nests between 2015 and 2022 across key states.",
+    "font": "Cinzel",
+    "fontSize": 22,
+    "anchor": "start",
+    "subtitleColor": "#666"
+  },
+  "width": "container",
+  "height": 380,
+  "data": {
+    "values": [
+      {"state": "Melaka", "year": "2015", "nests": 450},
+      {"state": "Melaka", "year": "2016", "nests": 412},
+      {"state": "Melaka", "year": "2017", "nests": 480},
+      {"state": "Melaka", "year": "2018", "nests": 395},
+      {"state": "Melaka", "year": "2019", "nests": 420},
+      {"state": "Melaka", "year": "2020", "nests": 650},
+      {"state": "Melaka", "year": "2021", "nests": 890},
+      {"state": "Melaka", "year": "2022", "nests": 1150},
+      {"state": "Terengganu", "year": "2015", "nests": 210},
+      {"state": "Terengganu", "year": "2016", "nests": 195},
+      {"state": "Terengganu", "year": "2017", "nests": 205},
+      {"state": "Terengganu", "year": "2018", "nests": 180},
+      {"state": "Terengganu", "year": "2019", "nests": 160},
+      {"state": "Terengganu", "year": "2020", "nests": 175},
+      {"state": "Terengganu", "year": "2021", "nests": 145},
+      {"state": "Terengganu", "year": "2022", "nests": 130},
+      {"state": "Johor", "year": "2015", "nests": 110},
+      {"state": "Johor", "year": "2016", "nests": 105},
+      {"state": "Johor", "year": "2017", "nests": 95},
+      {"state": "Johor", "year": "2018", "nests": 80},
+      {"state": "Johor", "year": "2019", "nests": 85},
+      {"state": "Johor", "year": "2020", "nests": 70},
+      {"state": "Johor", "year": "2021", "nests": 65},
+      {"state": "Johor", "year": "2022", "nests": 60}
+    ]
+  },
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelFontSize": 14,
+        "labelPadding": 10,
+        "grid": false,
+        "domain": false,
+        "ticks": false,
+        "labelFontWeight": "bold"
+      }
+    },
+    "y": {
+      "field": "nests",
+      "type": "quantitative",
+      "axis": {
+        "title": "Number of Hawksbill Nests",
+        "grid": true,
+        "gridDash": [4, 4],
+        "labelFontSize": 13,
+        "titleFont": "Plus Jakarta Sans"
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": {
+        "type": "line",
+        "point": {"filled": true, "size": 60},
+        "strokeWidth": 4
+      },
+      "encoding": {
+        "color": {
+          "field": "state",
+          "type": "nominal",
+          "scale": {
+            "domain": ["Melaka", "Terengganu", "Johor"],
+            "range": ["#e9c46a", "#a2aab3", "#ced4da"]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          {"field": "state", "title": "State"},
+          {"field": "year", "title": "Year"},
+          {"field": "nests", "title": "Recorded Nests"}
+        ]
+      }
+    },
+    {
+      "transform": [{"filter": "datum.year == '2015'"}],
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "dx": -14,
+        "fontSize": 15,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"field": "state"},
+        "color": {"field": "state"}
+      }
+    },
+    {
+      "transform": [{"filter": "datum.year == '2022'"}],
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "dx": 14,
+        "fontSize": 15,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "text": {"field": "nests", "type": "quantitative"},
+        "color": {"field": "state"}
+      }
+    }
+  ],
+  "config": {
+    "font": "Plus Jakarta Sans",
+    "view": {"stroke": "transparent"}
+  }
+}
