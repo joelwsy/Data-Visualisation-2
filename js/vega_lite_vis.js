@@ -1,14 +1,14 @@
 // Idiom 1: Geospatial Proportional Symbol Map
-var vg_1 = "charts/01_geo_map.json";
-vegaEmbed("#geo_map", vg_1).catch(console.error);
+var vg_1 = "charts/01_proportional_map.json";
+vegaEmbed("#proportional_map", vg_1).catch(console.error);
 
 // Idiom 2: Diverging Bar + Nest Failure Line (vconcat)
-var vg_2 = "charts/02_diverging_sst_failures.json";
-vegaEmbed("#sst_failures", vg_2).catch(console.error);
+var vg_2 = "charts/02_decline_lines.json";
+vegaEmbed("#decline_lines", vg_2).catch(console.error);
 
 // Idiom 3: Isotype Array of Seized Commodities
-var vg_3 = "charts/03_isotype_seizures.json";
-vegaEmbed("#isotype_seizures", vg_3).catch(console.error);
+var vg_3 = "charts/03_sst_sex_failure.json";
+vegaEmbed("#sst_sex_failure", vg_3).catch(console.error);
 
 // Idiom 4: Dual-Axis Area + Line (Landings vs Seizures)
 var vg_4 = "charts/04_landings_vs_seizures.json";
